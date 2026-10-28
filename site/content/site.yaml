@@ -11,7 +11,7 @@ email_user: contact
 email_domain: joshuaritchey.com
 
 # Cloudflare Web Analytics beacon token. Empty = no analytics script.
-analytics_token: ""
+analytics_token: "ecb70e49877b40a994bffaa47dbc9de8"
 
 hero:
   headline: I turn optics, chemistry, electronics, and software into one working product, then carry it to market.
