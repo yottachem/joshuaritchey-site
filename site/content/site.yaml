@@ -1,0 +1,70 @@
+# Page copy and settings. CV facts live in career.yaml.
+
+url: https://joshuaritchey.com
+title: Josh Ritchey
+description: >-
+  Josh Ritchey, Ph.D. builds analytical instruments and advanced materials into products:
+  optics, chemistry, electronics, and software carried from concept through regulated manufacturing.
+
+# Contact alias, split so the address never appears whole in the HTML source.
+email_user: contact
+email_domain: joshuaritchey.com
+
+# Cloudflare Web Analytics beacon token. Empty = no analytics script.
+analytics_token: ""
+
+hero:
+  headline: I turn optics, chemistry, electronics, and software into one working product, then carry it to market.
+  emphasis: one working product
+  sub: >-
+    R&D and product development leader with 15+ years building analytical and instrumentation
+    platforms in life sciences, diagnostics, and materials.
+
+capabilities:
+  - title: Instruments and platforms
+    body: >-
+      I build analytical instruments as one system: optics, consumable, electronics, software,
+      and the assay that runs on them. At NanoMosaic I took Tessie, a photonic protein-quantitation
+      instrument, from concept to beta in 18 months, then through FDA CBER Advanced Manufacturing
+      Technology designation for AAV characterization. At Nirrin I led product development for
+      Atlas, a scanning-laser NIR platform for bioprocess analytics.
+    proof: Tessie · Atlas, R&D 100 (2025) · AAV capsid characterization
+  - title: Materials and surface chemistry
+    body: >-
+      My base is materials chemistry: the polymers, surfactants, dyes, and surface treatments that
+      make devices work. That runs from electrophoretic display materials at E Ink, to microfluidic
+      antifouling surfaces and FRET dye systems at Bio-Rad, to Ulva-based bioplastics for carbon
+      removal today.
+    proof: 14 issued patents · Ph.D., Materials Chemistry, UIUC
+  - title: Product strategy
+    body: >-
+      I translate between the bench, the customer, and the board. That means requirements and
+      roadmaps, early-access customer programs, technical diligence for investors and partners,
+      and design controls that keep research, engineering, and manufacturing on one plan.
+    proof: Board and investor communication · design controls · ISO-9001 · 21 CFR Part 11
+  - title: Advisory
+    body: >-
+      For startups and investors: technical diligence on tools, diagnostics, and materials
+      companies; restarting a stalled instrument or consumable program; scale-up and quality
+      systems; materials formulation; and practical AI tooling for small R&D teams.
+    proof: Technical Advisor, Nonlinear CDR · fractional and project engagements
+
+data_tools:
+  intro: Side projects built with Python and AI coding tools. Code and data are public.
+  items:
+    - name: Grid Impact Tracker
+      body: Data center load growth against residential electricity costs in the US, with scheduled open-data ingest and an exposure index.
+      site: https://yottachem.github.io/grid-impact/
+      code: https://github.com/yottachem/grid-impact
+    - name: Unemployment Gap
+      body: Why unemployment can look low while job seekers struggle, through duration, hiring rates, and benefit exhaustion.
+      site: https://yottachem.github.io/unemployment-gap/
+      code: https://github.com/yottachem/unemployment-gap
+    - name: Job Pipeline
+      body: A Claude Code workflow template for structured applications, with fit scoring, screen checks, and tailoring that never invents claims.
+      site: null
+      code: https://github.com/yottachem/job-pipeline
+
+contact:
+  heading: Contact
+  body: I welcome conversations about R&D and product leadership, advisory work, and technical collaboration in instruments, diagnostics, and advanced materials.

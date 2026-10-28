@@ -1,0 +1,9 @@
+[project]
+name = "joshuaritchey-site"
+version = "0.1.0"
+description = "Personal site for Joshua A. Ritchey, Ph.D. (joshuaritchey.com)"
+requires-python = ">=3.12"
+dependencies = [
+    "jinja2>=3.1",
+    "pyyaml>=6",
+]

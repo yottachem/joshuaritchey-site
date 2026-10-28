@@ -1,0 +1,110 @@
+# Public CV facts. Source of truth for facts is the private master CV; this file holds only
+# the public subset (spec: years-only dates, no degree years, no phone, no customer names,
+# public metrics only). Every fact here must also appear in the master CV; the drift check
+# in the private EA folder compares the two. Publications are verified against Crossref (DOIs below).
+
+name: Joshua A. Ritchey, Ph.D.
+short_name: Josh Ritchey
+location: Greater Boston
+linkedin: https://www.linkedin.com/in/joshua-ritchey
+
+summary: >-
+  R&D and product development leader with 15+ years building and commercializing analytical,
+  assay, and instrumentation platforms in life sciences and diagnostics. Unifies optics,
+  spectroscopy, nanofabrication, electronics, software, and chemistry into a single technical
+  system, then carries it through funding, regulated manufacturing (ISO-9001, 21 CFR Part 11),
+  and launch. Grounded in materials chemistry, with a hands-on, experimental approach to technical
+  leadership and a record of developing direct reports into leadership roles.
+
+roles:
+  - company: Nonlinear CDR
+    context: Carbon dioxide removal startup; biobased materials R&D and scale-up
+    domain: Ulva-based bioplastics, carbon removal
+    titles:
+      - {title: Technical Advisor, start: 2025, end: present}
+    highlights:
+      - Lead hands-on development of Ulva-based bioplastic materials for the company's growth tanks, including in-house mechanical test methods that shorten formulation iteration.
+      - Advise the founder on technical strategy, including in-house tank fabrication as a capital-efficient path to scale.
+      - Write grant proposals; the company was selected for the CleanTech Open 2026 cohort.
+
+  - company: Nirrin Technologies
+    context: Scanning-laser NIR spectroscopy for bioprocess analytics (PAT)
+    domain: NIR spectroscopy for bioprocessing
+    titles:
+      - {title: "Vice President, Product Development", start: 2025, end: 2025}
+    highlights:
+      - Led product development for Atlas, recognized with a 2025 R&D 100 Award (Analytical Test).
+      - Led a cross-functional mechanical, electrical, and software team; introduced rapid prototyping, parallel workstreams, and CI/CD that cut software patch cycles from months to days.
+      - Brought Atlas manufacturing, documentation, and supply chain in-house as the foundation for the next-generation platform.
+      - Established the company's ISO-9001-aligned quality system, with 21 CFR Part 11 controls verified by third-party audit.
+
+  - company: NanoMosaic
+    context: Photonics-based protein quantitation and multi-omic assays for cell and gene therapy
+    domain: Photonic protein quantitation, cell and gene therapy
+    titles:
+      - {title: Chief Technology Officer, start: 2022, end: 2024}
+      - {title: "Vice President, Product Development", start: 2019, end: 2022}
+    highlights:
+      - Founding leadership team member; grew the technical organization from 2 to 25 staff and contributed to the $40MM Series A.
+      - Led Tessie, a protein quantitation instrument with machine vision, onboard analysis, and consumable, from concept to beta in 18 months; wrote its first image-analysis algorithms in Python and OpenCV.
+      - Led instrument, consumable, and assay development for empty, partial, and full AAV capsid characterization, which earned FDA CBER Advanced Manufacturing Technology designation.
+      - Led board and partner communication on technical strategy, roadmap, and IP diligence; served as technical lead for early-access customer programs.
+
+  - company: Exosome Diagnostics
+    context: Exosome quantitation with nanopore arrays and LSPR spectroscopy
+    domain: LSPR nanopore sensing, IVD
+    titles:
+      - {title: Senior Development Scientist, start: 2018, end: 2018}
+    highlights:
+      - Led development of an IVD exosome detection platform, covering hardware and consumables.
+      - Improved LSPR sensor performance through optimized antibody purification; coordinated external nanofabrication and software partners.
+
+  - company: Bio-Rad Laboratories, Digital Biology Center
+    context: Microfluidic droplet digital PCR
+    domain: Microfluidics, ddPCR, FRET dyes
+    titles:
+      - {title: Senior Scientist to Staff Scientist, start: 2013, end: 2017}
+    highlights:
+      - Developed microfluidic antifouling surface treatments, resulting in three patents.
+      - Led the dye synthesis program for eight individual FRET tandem dye products, and the spectroscopic normalization that resolved 4,096 droplet populations from five dyes.
+      - Led surfactant system development for three individual products.
+      - Managed two scientists, both since promoted to group leaders.
+
+  - company: E Ink Corporation
+    context: Electrophoretic display technology
+    domain: Electrophoretic display materials
+    titles:
+      - {title: Scientist II, start: 2010, end: 2013}
+    highlights:
+      - Developed electrophoretic display materials, including ink microencapsulation methods and monodisperse nanoparticles.
+      - Created polymerization methods and surfactants that supported color and transparent display technologies and multiple patents.
+
+# Awards went to products and teams, not to Josh personally; copy frames them that way.
+recognition:
+  intro: Recognition earned by products and teams I led or helped build.
+  items:
+    - {product: Atlas, org: Nirrin Technologies, award: "R&D 100 Award, Analytical Test", year: 2025}
+    - {product: AAV capsid characterization platform, org: NanoMosaic, award: FDA CBER Advanced Manufacturing Technology designation, year: null}
+    - {product: Tessie, org: NanoMosaic, award: "NEVY Award, Emerging MedTech", year: 2022}
+    - {product: Nonlinear CDR, org: null, award: CleanTech Open cohort, year: 2026}
+
+patents:
+  summary: 14 issued patents across 7 families, spanning biosensing, microfluidics, electrophoretic systems, and advanced materials.
+  selected:
+    - {title: Nanosensors and use thereof, number: "US 12,140,520"}
+    - {title: UV Graft on Microfluidic Devices, number: "US 10,538,659"}
+    - {title: Emulsion Compositions and Methods of Their Use, number: "US 12,275,989"}
+    - {title: Modification of Surface Properties of Microfluidic Devices, number: "US 12,551,889"}
+
+publications:
+  summary: Peer-reviewed work in materials chemistry, applied physics, and chemical education.
+  items:
+    - {title: Autonomic restoration of electrical conductivity using polymer-stabilized carbon nanotube and graphene microcapsules, authors: "S. A. Odom, ..., J. A. Ritchey, et al.", cite: "Appl. Phys. Lett. 101, 043106", year: 2012, doi: 10.1063/1.4737935}
+    - {title: Programmable chemical gradient patterns by soft grayscale lithography, authors: "J. A. Ritchey, et al.", cite: "Small 7, 3350-3362", year: 2011, doi: 10.1002/smll.201100920}
+    - {title: Restoration of conductivity with TTF-TCNQ charge-transfer salts, authors: "S. A. Odom, ..., J. A. Ritchey, et al.", cite: "Adv. Funct. Mater. 20, 1721-1727", year: 2010, doi: 10.1002/adfm.201000159}
+    - {title: Using the Cambridge Structural Database to teach molecular geometry concepts in organic chemistry, authors: "J. W. Wackerly, ..., J. A. Ritchey, et al.", cite: "J. Chem. Educ. 86, 460", year: 2009, doi: 10.1021/ed086p460}
+    - {title: Experimental and theoretical evidence for cyclic selenurane formation during selenomethionine oxidation, authors: "J. A. Ritchey, et al.", cite: "Org. Biomol. Chem. 3, 4337", year: 2005, doi: 10.1039/b513238j}
+
+education:
+  - {degree: "Ph.D., Materials Chemistry", school: University of Illinois Urbana-Champaign, note: Jeffrey S. Moore lab}
+  - {degree: "B.S., Chemistry, minor in Physics", school: Old Dominion University, note: null}

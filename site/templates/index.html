@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% block css %}
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 56px 48px; }
+.who { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+.who img { width: 76px; height: 76px; object-fit: cover; border-radius: 50%; border: 1px solid var(--rule); }
+.who .n { font: 600 18px/1.2 var(--font-display); }
+.who .m { font: 400 13px/1.4 var(--font-data); color: var(--muted); }
+.hero h1 { font: 400 clamp(30px, 4.2vw, 46px)/1.12 var(--font-display); letter-spacing: -.012em; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero .sub { margin: 20px 0 0; max-width: 54ch; font-size: 17px; color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 28px; font-size: 15px; }
+.cta .primary { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--beam); padding-bottom: 2px; font-weight: 500; }
+figure { margin: 0; }
+.fig svg { width: 100%; height: auto; display: block; }
+.fig figcaption { margin-top: 10px; font: 400 11.5px/1.4 var(--font-data); color: var(--muted); }
+.fig figcaption b { color: var(--ink); font-weight: 500; }
+.f-lbl { font: 500 9.5px var(--font-data); letter-spacing: .12em; fill: var(--ink); }
+.f-tag { font: 400 8px var(--font-data); letter-spacing: .14em; fill: var(--muted); }
+.f-box-t { font: 600 9.5px var(--font-data); letter-spacing: .16em; fill: var(--ink); }
+.f-axis { stroke: var(--rule); stroke-width: .75; stroke-dasharray: 10 3 2 3; fill: none; }
+.f-stop { stroke: var(--ink); stroke-width: 1.5; fill: none; }
+.f-in { stroke: var(--muted); stroke-width: .9; fill: none; }
+.f-ray { stroke: var(--beam); stroke-width: 1; fill: none; stroke-dasharray: 3 3; animation: flow 1.6s linear infinite; }
+.f-out { stroke: var(--beam); stroke-width: 2; fill: none; }
+.f-lens { fill: var(--accent-soft); stroke: var(--ink); stroke-width: .8; }
+.f-focus { fill: var(--paper); stroke: var(--beam); stroke-width: 1.2; }
+.f-box { fill: var(--surface); stroke: var(--ink); stroke-width: .9; }
+.f-bench { stroke: var(--muted); stroke-width: .75; fill: none; }
+.f-tick { stroke: var(--muted); stroke-width: .6; fill: none; }
+.f-sta { stroke: var(--beam); stroke-width: .9; fill: none; }
+@keyframes flow { to { stroke-dashoffset: -12; } }
+@media (prefers-reduced-motion: reduce) { .f-ray { animation: none; } }
+
+.caps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 40px; }
+.cap { border-top: 2px solid var(--ink); padding-top: 14px; }
+.cap p { margin: 10px 0 12px; }
+
+.track { list-style: none; margin: 0; padding: 0; }
+.track li { display: grid; grid-template-columns: 104px minmax(0, 1.2fr) minmax(0, 1fr); gap: 4px 20px; padding-block: 14px; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.track li:first-child { padding-top: 0; }
+.yrs { font: 500 13px var(--font-data); font-variant-numeric: tabular-nums; color: var(--muted); }
+.co { font: 500 17px/1.3 var(--font-display); }
+.ro { display: block; font-size: 14px; color: var(--muted); }
+.dom { font-size: 14px; color: var(--muted); }
+.more { margin-top: 18px; font-size: 15px; }
+
+.rec { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 40px; }
+.rec li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 12px; }
+.rec .y { font: 500 13px var(--font-data); font-variant-numeric: tabular-nums; color: var(--accent); padding-top: 2px; }
+.rec .i { font-weight: 500; }
+.rec .o { font-weight: 400; color: var(--muted); }
+.rec .d { display: block; font-size: 14px; color: var(--muted); }
+.rec-intro { margin: 0 0 18px; color: var(--muted); max-width: 62ch; }
+
+.tools-intro { margin: 0 0 22px; color: var(--muted); max-width: 62ch; }
+.tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.tool h3 { font-size: 19px; }
+.tool p { margin: 8px 0 10px; font-size: 15px; color: var(--muted); }
+.tool .links { display: flex; gap: 16px; font: 500 13px var(--font-data); }
+
+.contact h2 { font-size: clamp(26px, 3.4vw, 34px); font-weight: 400; }
+.contact p { margin: 10px 0 20px; color: var(--muted); max-width: 56ch; }
+.contact .li { margin-top: 14px; font-size: 15px; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); padding-block: 36px 32px; gap: 32px; }
+  .tools { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .caps, .rec { grid-template-columns: minmax(0, 1fr); }
+  .track li { grid-template-columns: minmax(0, 1fr); }
+}
+{% endblock %}
+{% block main %}
+<section class="hero">
+  <div>
+    <div class="who">
+      <img src="static/headshot.jpg" alt="Portrait of Josh Ritchey" width="76" height="76">
+      <div><div class="n">{{ career.name }}</div><div class="m">{{ career.location }} · R&amp;D and product development</div></div>
+    </div>
+    <h1>{{ hero_headline | safe }}</h1>
+    <p class="sub">{{ site.hero.sub }}</p>
+    <div class="cta">
+      <a class="primary" href="#contact">Get in touch</a>
+      <a href="cv.html">Read the CV</a>
+      <a href="{{ career.linkedin }}">LinkedIn</a>
+    </div>
+  </div>
+  <figure class="fig">
+    <svg viewBox="0 0 480 304" role="img" aria-labelledby="fig1">
+      <title id="fig1">Optics, chemistry, electronics, and software pass through one lens and focus into a single product.</title>
+      <path class="f-axis" d="M14 140 H470"/>
+      {% for lbl in ["OPTICS", "CHEMISTRY", "ELECTRONICS", "SOFTWARE"] %}{% set y = 50 + loop.index0 * 60 %}
+      <text class="f-lbl" x="80" y="{{ y + 3.5 }}" text-anchor="end">{{ lbl }}</text>
+      <path class="f-stop" d="M92 {{ y - 5 }} V{{ y + 5 }}"/>
+      <path class="f-in" d="M92 {{ y }} H{{ 240 - (8.25 * (1 - ((y - 140) / 118) ** 2)) | round(2) }}"/>
+      <path class="f-ray" d="M{{ 240 + (8.25 * (1 - ((y - 140) / 118) ** 2)) | round(2) }} {{ y }} L344 140"/>
+      {% endfor %}
+      <path class="f-lens" d="M240 22 Q256.5 140 240 258 Q223.5 140 240 22 Z"/>
+      <path class="f-out" d="M344 140 H380"/>
+      <circle class="f-focus" cx="344" cy="140" r="2.4"/>
+      <text class="f-tag" x="344" y="129" text-anchor="middle">F</text>
+      <rect class="f-box" x="380" y="114" width="86" height="52" rx="1.5"/>
+      <text class="f-box-t" x="423" y="138" text-anchor="middle">PRODUCT</text>
+      <text class="f-tag" x="423" y="153" text-anchor="middle">ONE SYSTEM</text>
+      <path class="f-bench" d="M14 278 H470"/>
+      {% for x in range(20, 471, 10) %}<path class="f-tick" d="M{{ x }} 278 V{{ 274 if x % 50 else 270 }}"/>{% endfor %}
+      {% for x, t in [(92, "INPUTS"), (240, "INTEGRATION"), (344, "FOCUS"), (423, "OUTPUT")] %}
+      <path class="f-sta" d="M{{ x }} 266 V284"/><text class="f-tag" x="{{ x }}" y="298" text-anchor="middle">{{ t }}</text>
+      {% endfor %}
+    </svg>
+    <figcaption><b>Fig. 1</b>  Four disciplines, one optical path.</figcaption>
+  </figure>
+</section>
+
+<section class="sec">
+  <div class="label">What I do</div>
+  <div class="caps">
+    {% for c in site.capabilities %}
+    <div class="cap">
+      <h3>{{ c.title }}</h3>
+      <p>{{ c.body }}</p>
+      <div class="mono">{{ c.proof }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="sec">
+  <div class="label">Track record<span>{{ career.roles | length }} roles</span></div>
+  <div>
+    <ol class="track">
+      {% for r in career.roles %}
+      <li>
+        <span class="yrs">{{ r.years }}</span>
+        <span><span class="co">{{ r.company_short }}</span><span class="ro">{{ r.titles | map(attribute="title") | join("; ") }}</span></span>
+        <span class="dom">{{ r.domain }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+    <p class="more"><a href="cv.html">Full CV, patents, and publications</a></p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="label">Team recognition</div>
+  <div>
+    <p class="rec-intro">{{ career.recognition.intro }}</p>
+    <ul class="rec">
+      {% for r in career.recognition["items"] %}
+      <li><span class="y">{{ r.year or "" }}</span><span><span class="i">{{ r.product }}{% if r.org %}<span class="o">, {{ r.org }}</span>{% endif %}</span><span class="d">{{ r.award }}</span></span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="label">Data tools</div>
+  <div>
+    <p class="tools-intro">{{ site.data_tools.intro }}</p>
+    <div class="tools">
+      {% for t in site.data_tools["items"] %}
+      <div class="tool">
+        <h3>{{ t.name }}</h3>
+        <p>{{ t.body }}</p>
+        <div class="links">{% if t.site %}<a href="{{ t.site }}">Site</a>{% endif %}<a href="{{ t.code }}">Code</a></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec contact" id="contact">
+  <div class="label">Contact</div>
+  <div>
+    <h2>{{ site.contact.heading }}</h2>
+    <p>{{ site.contact.body }}</p>
+    <div class="addr"><a class="js-addr" href="#contact">{{ site.email_user }} [at] {{ site.email_domain }}</a><button class="copy" type="button" id="copy-email">Copy</button></div>
+    <div class="li"><a href="{{ career.linkedin }}">Connect on LinkedIn</a></div>
+  </div>
+</section>
+{% endblock %}

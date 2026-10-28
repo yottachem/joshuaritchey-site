@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block css %}
+.cv-head { padding-block: 48px 36px; display: grid; gap: 10px; }
+.cv-head h1 { font: 400 clamp(32px, 4.4vw, 44px)/1.1 var(--font-display); letter-spacing: -.01em; }
+.cv-head .meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font: 400 13px/1.5 var(--font-data); color: var(--muted); }
+.cv-head .meta a { color: var(--muted); }
+.note { margin: 6px 0 0; padding: 12px 14px; background: var(--accent-soft); border-radius: 3px; font-size: 14px; max-width: 70ch; }
+.summary { margin: 0; max-width: 68ch; font-size: 17px; }
+.role { padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid var(--rule); }
+.role:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.role h2 { font-size: 23px; }
+.ctx { margin: 4px 0 10px; font-size: 14px; color: var(--muted); font-style: italic; }
+.titles { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 2px; }
+.titles li { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+.titles .t { font-weight: 600; }
+.titles .y { font: 500 13px var(--font-data); font-variant-numeric: tabular-nums; color: var(--muted); }
+.hl { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 72ch; }
+.hl li::marker { color: var(--beam); }
+.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 72ch; }
+.plain .d { display: block; font-size: 14px; color: var(--muted); }
+a.pub { color: var(--ink); text-decoration-color: var(--rule); }
+a.pub:hover { text-decoration-color: var(--beam); }
+.num { font: 500 13px var(--font-data); color: var(--muted); white-space: nowrap; }
+.sec h2 + .plain, .sec p + .plain { margin-top: 12px; }
+.sec > div > p { margin: 0; max-width: 72ch; }
+{% endblock %}
+{% block main %}
+<header class="cv-head">
+  <h1>{{ career.name }}</h1>
+  <div class="meta"><span>{{ career.location }}</span><a href="{{ career.linkedin }}">linkedin.com/in/joshua-ritchey</a><a class="js-addr" href="index.html#contact">{{ site.email_user }} [at] {{ site.email_domain }}</a></div>
+  <p class="note">This is a public summary. A full CV with complete detail is available on request.</p>
+</header>
+
+<section class="sec">
+  <div class="label">Summary</div>
+  <p class="summary">{{ career.summary }}</p>
+</section>
+
+<section class="sec">
+  <div class="label">Experience</div>
+  <div>
+    {% for r in career.roles %}
+    <article class="role">
+      <h2>{{ r.company }}</h2>
+      <p class="ctx">{{ r.context }}</p>
+      <ul class="titles">
+        {% for t in r.titles %}<li><span class="t">{{ t.title }}</span><span class="y">{{ t.years }}</span></li>{% endfor %}
+      </ul>
+      <ul class="hl">
+        {% for h in r.highlights %}<li>{{ h }}</li>{% endfor %}
+      </ul>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="sec">
+  <div class="label">Team recognition</div>
+  <div>
+    <p>{{ career.recognition.intro }}</p>
+    <ul class="plain">
+      {% for r in career.recognition["items"] %}<li>{{ r.product }}{% if r.org %}, {{ r.org }}{% endif %}<span class="d">{{ r.award }}{% if r.year %}, {{ r.year }}{% endif %}</span></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="label">Patents</div>
+  <div>
+    <p>{{ career.patents.summary }} Selected:</p>
+    <ul class="plain">
+      {% for p in career.patents.selected %}<li>{{ p.title }} <span class="num">{{ p.number }}</span></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="label">Publications</div>
+  <div>
+    <p>{{ career.publications.summary }}</p>
+    <ul class="plain">
+      {% for p in career.publications["items"] %}<li><a class="pub" href="https://doi.org/{{ p.doi }}">{{ p.title }}</a><span class="d">{{ p.authors }} · <i>{{ p.cite }}</i> ({{ p.year }})</span></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="label">Education</div>
+  <ul class="plain">
+    {% for e in career.education %}<li>{{ e.degree }}<span class="d">{{ e.school }}{% if e.note %} · {{ e.note }}{% endif %}</span></li>{% endfor %}
+  </ul>
+</section>
+{% endblock %}
