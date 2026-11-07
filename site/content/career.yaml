@@ -89,12 +89,45 @@ recognition:
     - {product: Nonlinear CDR, org: null, award: CleanTech Open cohort, year: 2026}
 
 patents:
-  summary: 14 issued patents across 7 families, spanning biosensing, microfluidics, electrophoretic systems, and advanced materials.
-  selected:
-    - {title: Nanosensors and use thereof, number: "US 12,140,520"}
-    - {title: UV Graft on Microfluidic Devices, number: "US 10,538,659"}
-    - {title: Emulsion Compositions and Methods of Their Use, number: "US 12,275,989"}
-    - {title: Modification of Surface Properties of Microfluidic Devices, number: "US 12,551,889"}
+  summary: 14 issued US patents across 7 families, spanning biosensing, microfluidics, electrophoretic systems, and advanced materials.
+  # All issued US patents, by family, newest grant first. Verified on Google Patents 2026-11-07
+  # (EA projects/personal-site/patents-verified.yaml); id is the Google Patents publication number.
+  families:
+    - title: Modification of Surface Properties of Microfluidic Devices
+      assignee: Bio-Rad
+      patents:
+        - {number: "US 12,551,889", id: US12551889B2, year: 2026}
+        - {number: "US 11,759,780", id: US11759780B2, year: 2023}
+        - {number: "US 10,919,038", id: US10919038B2, year: 2021}
+    - title: Emulsion Compositions and Methods of Their Use
+      assignee: Bio-Rad
+      patents:
+        - {number: "US 12,275,989", id: US12275989B2, year: 2025}
+        - {number: "US 11,845,980", id: US11845980B2, year: 2023}
+        - {number: "US 11,274,337", id: US11274337B2, year: 2022}
+        - {number: "US 11,118,217", id: US11118217B2, year: 2021}
+    - title: Nanosensors and Use Thereof
+      assignee: NanoMosaic
+      patents:
+        - {number: "US 12,140,520", id: US12140520B2, year: 2024}
+    - title: UV Graft on Microfluidic Devices
+      assignee: Bio-Rad
+      patents:
+        - {number: "US 10,538,659", id: US10538659B2, year: 2020}
+    - title: Nano-Particle Based Variable Transmission Devices
+      assignee: E Ink
+      patents:
+        - {number: "US 10,796,649", id: US10796649B2, year: 2020}
+        - {number: "US 9,953,588", id: US9953588B1, year: 2018}
+    - title: Electrophoretic Medium Comprising a Mixture of Charge Control Agents
+      assignee: E Ink
+      patents:
+        - {number: "US 10,233,339", id: US10233339B2, year: 2019}
+        - {number: "US 10,040,954", id: US10040954B2, year: 2018}
+    - title: Materials and Methods for Autonomous Restoration of Electrical Conductivity
+      assignee: University of Illinois
+      patents:
+        - {number: "US 8,679,621", id: US8679621B2, year: 2014}
 
 publications:
   summary: Peer-reviewed work in materials chemistry, applied physics, and chemical education.

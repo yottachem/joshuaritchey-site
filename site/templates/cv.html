@@ -20,7 +20,8 @@
 .plain .d { display: block; font-size: 14px; color: var(--muted); }
 a.pub { color: var(--ink); text-decoration-color: var(--rule); }
 a.pub:hover { text-decoration-color: var(--beam); }
-.num { font: 500 13px var(--font-data); color: var(--muted); white-space: nowrap; }
+.num { font: 500 13px var(--font-data); white-space: nowrap; }
+a.num { color: var(--accent); }
 .sec h2 + .plain, .sec p + .plain { margin-top: 12px; }
 .sec > div > p { margin: 0; max-width: 72ch; }
 {% endblock %}
@@ -67,9 +68,9 @@ a.pub:hover { text-decoration-color: var(--beam); }
 <section class="sec">
   <div class="label">Patents</div>
   <div>
-    <p>{{ career.patents.summary }} Selected:</p>
+    <p>{{ career.patents.summary }}</p>
     <ul class="plain">
-      {% for p in career.patents.selected %}<li>{{ p.title }} <span class="num">{{ p.number }}</span></li>{% endfor %}
+      {% for f in career.patents.families %}<li>{{ f.title }}<span class="d">{{ f.assignee }} · {% for p in f.patents %}<a class="num" href="https://patents.google.com/patent/{{ p.id }}">{{ p.number }}</a> ({{ p.year }}){% if not loop.last %}, {% endif %}{% endfor %}</span></li>{% endfor %}
     </ul>
   </div>
 </section>
@@ -79,7 +80,7 @@ a.pub:hover { text-decoration-color: var(--beam); }
   <div>
     <p>{{ career.publications.summary }}</p>
     <ul class="plain">
-      {% for p in career.publications["items"] %}<li><a class="pub" href="https://doi.org/{{ p.doi }}">{{ p.title }}</a><span class="d">{{ p.authors }} · <i>{{ p.cite }}</i> ({{ p.year }})</span></li>{% endfor %}
+      {% for p in career.publications["items"] %}<li><a class="pub" href="https://doi.org/{{ p.doi }}">{{ p.title }}</a><span class="d">{{ p.authors }} · <i>{{ p.cite }}</i> ({{ p.year }}) · <a class="num" href="https://doi.org/{{ p.doi }}">doi:{{ p.doi }}</a></span></li>{% endfor %}
     </ul>
   </div>
 </section>
