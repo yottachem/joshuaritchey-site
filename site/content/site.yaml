@@ -51,7 +51,12 @@ capabilities:
 
 data_tools:
   intro: Side projects built with Python and AI coding tools. Code and data are public.
+  # Newest first. The section is a carousel: three cards show on desktop, the rest scroll.
   items:
+    - name: Life Science Tools Tracker
+      body: Where ten life science tools technologies sit on their adoption curve, from papers, NIH grants, patents, and the companies that sell them. Refreshed monthly.
+      site: https://yottachem.github.io/lifesci-tools-tracker/
+      code: https://github.com/yottachem/lifesci-tools-tracker
     - name: Grid Impact Tracker
       body: Data center load growth against residential electricity costs in the US, with scheduled open-data ingest and an exposure index.
       site: https://yottachem.github.io/grid-impact/

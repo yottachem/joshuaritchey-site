@@ -46,7 +46,7 @@ roles:
       - {title: "Vice President, Product Development", start: 2019, end: 2022}
     highlights:
       - Founding leadership team member; grew the technical organization from 2 to 25 staff and contributed to the $40MM Series A.
-      - Led Tessie, a protein quantitation instrument with machine vision, onboard analysis, and consumable, from concept to beta in 18 months; wrote its first image-analysis algorithms in Python and OpenCV.
+      - Led Tessie, a protein quantitation instrument with machine vision, onboard analysis, and consumable, from concept to beta in 18 months; personally rebuilt its first image analysis in Python and OpenCV, cutting analysis time per run from hours to minutes, and coded its customer data report.
       - Led instrument, consumable, and assay development for empty, partial, and full AAV capsid characterization, which earned FDA CBER Advanced Manufacturing Technology designation.
       - Led board and partner communication on technical strategy, roadmap, and IP diligence; served as technical lead for early-access customer programs.
 
