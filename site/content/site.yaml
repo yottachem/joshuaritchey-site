@@ -3,8 +3,8 @@
 url: https://joshuaritchey.com
 title: Josh Ritchey
 description: >-
-  Josh Ritchey, Ph.D. builds analytical instruments and advanced materials into products:
-  optics, chemistry, electronics, and software carried from concept through regulated manufacturing.
+  Josh Ritchey, Ph.D. is a materials chemist and R&D leader in analytical instruments and advanced
+  materials. He turns chemistry, hardware, and software into one working product, then makes it measurably better.
 
 # Contact alias, split so the address never appears whole in the HTML source.
 email_user: contact
@@ -14,7 +14,7 @@ email_domain: joshuaritchey.com
 analytics_token: "ecb70e49877b40a994bffaa47dbc9de8"
 
 hero:
-  headline: I turn optics, chemistry, electronics, and software into one working product, then carry it to market.
+  headline: I turn chemistry, hardware, and software into one working product, then make it measurably better.
   emphasis: one working product
   sub: >-
     R&D and product development leader with 15+ years building analytical and instrumentation

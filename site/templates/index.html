@@ -22,7 +22,9 @@ figure { margin: 0; }
 .f-in { stroke: var(--muted); stroke-width: .9; fill: none; }
 .f-ray { stroke: var(--beam); stroke-width: 1; fill: none; stroke-dasharray: 3 3; animation: flow 1.6s linear infinite; }
 .f-out { stroke: var(--beam); stroke-width: 2; fill: none; }
-.f-lens { fill: var(--accent-soft); stroke: var(--ink); stroke-width: .8; }
+.f-junc { fill: var(--surface); stroke: var(--ink); stroke-width: 1.1; }
+.f-sig { font: 500 15px var(--font-display); fill: var(--ink); }
+.f-arr { fill: var(--beam); }
 .f-focus { fill: var(--paper); stroke: var(--beam); stroke-width: 1.2; }
 .f-box { fill: var(--surface); stroke: var(--ink); stroke-width: .9; }
 .f-bench { stroke: var(--muted); stroke-width: .75; fill: none; }
@@ -99,28 +101,34 @@ figure { margin: 0; }
   </div>
   <figure class="fig">
     <svg viewBox="0 0 480 304" role="img" aria-labelledby="fig1">
-      <title id="fig1">Optics, chemistry, electronics, and software pass through one lens and focus into a single product.</title>
-      <path class="f-axis" d="M14 140 H470"/>
-      {% for lbl in ["OPTICS", "CHEMISTRY", "ELECTRONICS", "SOFTWARE"] %}{% set y = 50 + loop.index0 * 60 %}
-      <text class="f-lbl" x="80" y="{{ y + 3.5 }}" text-anchor="end">{{ lbl }}</text>
+      <title id="fig1">Chemistry, hardware, software, and team feed one junction that drives the product. The product is measured and the result feeds back into the junction.</title>
+      <defs><marker id="f-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="f-arr" d="M0 0 L8 4 L0 8 Z"/></marker></defs>
+      {% for lbl in ["CHEMISTRY", "HARDWARE", "SOFTWARE", "TEAM"] %}{% set y = 56 + loop.index0 * 56 %}
+      <text class="f-lbl" x="84" y="{{ y + 3.5 }}" text-anchor="end">{{ lbl }}</text>
       <path class="f-stop" d="M92 {{ y - 5 }} V{{ y + 5 }}"/>
-      <path class="f-in" d="M92 {{ y }} H{{ 240 - (8.25 * (1 - ((y - 140) / 118) ** 2)) | round(2) }}"/>
-      <path class="f-ray" d="M{{ 240 + (8.25 * (1 - ((y - 140) / 118) ** 2)) | round(2) }} {{ y }} L344 140"/>
+      <path class="f-ray" d="M92 {{ y }} L190 140"/>
       {% endfor %}
-      <path class="f-lens" d="M240 22 Q256.5 140 240 258 Q223.5 140 240 22 Z"/>
-      <path class="f-out" d="M344 140 H380"/>
-      <circle class="f-focus" cx="344" cy="140" r="2.4"/>
-      <text class="f-tag" x="344" y="129" text-anchor="middle">F</text>
-      <rect class="f-box" x="380" y="114" width="86" height="52" rx="1.5"/>
-      <text class="f-box-t" x="423" y="138" text-anchor="middle">PRODUCT</text>
-      <text class="f-tag" x="423" y="153" text-anchor="middle">ONE SYSTEM</text>
+      <path class="f-out" d="M205 140 H258"/>
+      <rect class="f-box" x="258" y="114" width="92" height="52" rx="1.5"/>
+      <text class="f-box-t" x="304" y="138" text-anchor="middle">PRODUCT</text>
+      <text class="f-tag" x="304" y="153" text-anchor="middle">ONE SYSTEM</text>
+      <path class="f-out" d="M350 140 H462" marker-end="url(#f-arrow)"/>
+      <text class="f-tag" x="440" y="130" text-anchor="middle">OUTPUT</text>
+      <path class="f-ray" d="M400 140 V236 H346"/>
+      <rect class="f-box" x="262" y="216" width="84" height="40" rx="1.5"/>
+      <text class="f-box-t" x="304" y="234" text-anchor="middle">MEASURE</text>
+      <text class="f-tag" x="304" y="247" text-anchor="middle">TEST · TUNE</text>
+      <path class="f-ray" d="M262 236 H190 V158" marker-end="url(#f-arrow)"/>
+      <circle class="f-junc" cx="190" cy="140" r="15"/>
+      <text class="f-sig" x="190" y="146" text-anchor="middle">Σ</text>
+      <circle class="f-focus" cx="400" cy="140" r="2.4"/>
       <path class="f-bench" d="M14 278 H470"/>
       {% for x in range(20, 471, 10) %}<path class="f-tick" d="M{{ x }} 278 V{{ 274 if x % 50 else 270 }}"/>{% endfor %}
-      {% for x, t in [(92, "INPUTS"), (240, "INTEGRATION"), (344, "FOCUS"), (423, "OUTPUT")] %}
+      {% for x, t in [(92, "INPUTS"), (190, "INTEGRATION"), (304, "PRODUCT"), (400, "FEEDBACK")] %}
       <path class="f-sta" d="M{{ x }} 266 V284"/><text class="f-tag" x="{{ x }}" y="298" text-anchor="middle">{{ t }}</text>
       {% endfor %}
     </svg>
-    <figcaption><b>Fig. 1</b>  Four disciplines, one optical path.</figcaption>
+    <figcaption><b>Fig. 1</b>  Four inputs, one closed loop.</figcaption>
   </figure>
 </section>
 
