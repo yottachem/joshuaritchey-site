@@ -53,6 +53,10 @@ data_tools:
   intro: Side projects built with Python and AI coding tools. Code and data are public.
   # Newest first. The section is a carousel: three cards show on desktop, the rest scroll.
   items:
+    - name: Physical AI Tracker
+      body: Funding, hiring, and announcements for more than 100 physical AI companies across 11 segments, from humanoids to lab automation, each figure linked to its source. Updated daily.
+      site: https://yottachem.github.io/physical-ai-tracker/
+      code: https://github.com/yottachem/physical-ai-tracker
     - name: Life Science Tools Tracker
       body: Where ten life science tools technologies sit on their adoption curve, from papers, NIH grants, patents, and the companies that sell them. Refreshed monthly.
       site: https://yottachem.github.io/lifesci-tools-tracker/
