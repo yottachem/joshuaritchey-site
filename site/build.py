@@ -1,5 +1,5 @@
 """Build the site into site/dist from site/content (YAML) and site/templates (Jinja).
-Pages: About (index.html), CV (cv.html). Usage: uv run python site/build.py"""
+Pages: About (index.html), CV (cv.html), Data tools (tools.html). Usage: uv run python site/build.py"""
 import html
 import json
 import shutil
@@ -34,6 +34,20 @@ def load():
     return career, site
 
 
+def tools(site):
+    """Featured tools for the About page and tools grouped for tools.html, with checks."""
+    dt = site["data_tools"]
+    groups = {g["id"]: {**g, "items": []} for g in dt["groups"]}
+    for t in dt["items"]:
+        if t.get("group") not in groups:
+            raise SystemExit(f'data tool {t["name"]!r} has no valid group (one of {", ".join(groups)})')
+        groups[t["group"]]["items"].append(t)
+    featured = [t for t in dt["items"] if t.get("featured")]
+    if not 1 <= len(featured) <= 3:
+        raise SystemExit(f"feature 1 to 3 data tools on the About page, not {len(featured)}")
+    return featured, [g for g in groups.values() if g["items"]]
+
+
 def person_ld(career, site):
     return json.dumps({
         "@context": "https://schema.org", "@type": "Person", "name": career["name"],
@@ -51,12 +65,15 @@ def main():
     if hero.get("emphasis"):
         e = html.escape(hero["emphasis"])
         headline = headline.replace(e, f"<em>{e}</em>", 1)
-    common = dict(career=career, site=site, person_ld=person_ld(career, site))
+    featured, groups = tools(site)
+    common = dict(career=career, site=site, person_ld=person_ld(career, site), featured_tools=featured, tool_groups=groups)
     pages = {
         "index": dict(page_title=f'{career["short_name"]} · R&D and product development', canonical="",
                       page_description=site["description"], hero_headline=headline),
         "cv": dict(page_title=f'CV · {career["short_name"]}', canonical="cv.html",
                    page_description=f'Public CV of {career["name"]}: experience, recognition, patents, publications, education.'),
+        "tools": dict(page_title=f'Data tools · {career["short_name"]}', canonical="tools.html",
+                      page_description=f'Data tools by {career["name"]}: market trackers, technical references, and economics, with public code and data.'),
     }
     if DIST.exists():
         shutil.rmtree(DIST)

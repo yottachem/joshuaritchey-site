@@ -54,22 +54,9 @@ figure { margin: 0; }
 .rec .d { display: block; font-size: 14px; color: var(--muted); }
 .rec-intro { margin: 0 0 18px; color: var(--muted); max-width: 62ch; }
 
-.tools-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 22px; }
+.tools-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 24px; margin-bottom: 22px; }
 .tools-intro { margin: 0; color: var(--muted); max-width: 62ch; }
-.tools-nav { display: flex; align-items: center; gap: 8px; }
-.tools-nav[hidden] { display: none; }
-.tools-nav .pos { font: 400 12px var(--font-data); font-variant-numeric: tabular-nums; color: var(--muted); margin-right: 6px; }
-.tools-nav button { font: 500 15px/1 var(--font-data); color: var(--ink); background: transparent; border: 1px solid var(--rule); border-radius: 3px; width: 34px; height: 34px; cursor: pointer; }
-.tools-nav button:hover:not(:disabled) { border-color: var(--muted); }
-.tools-nav button:disabled { color: var(--rule); cursor: default; }
-/* Carousel: three cards per view on desktop, one and a peek on phones; works as plain scroll without JS. */
-.tools { --gap: 28px; display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * var(--gap)) / 3); gap: var(--gap);
-         overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; list-style: none; margin: 0; padding: 0; }
-.tools::-webkit-scrollbar { display: none; }
-.tool { scroll-snap-align: start; border-top: 2px solid var(--ink); padding-top: 14px; display: flex; flex-direction: column; }
-.tool h3 { font-size: 19px; }
-.tool p { margin: 8px 0 10px; font-size: 15px; color: var(--muted); flex: 1; }
-.tool .links { display: flex; gap: 16px; font: 500 13px var(--font-data); }
+.tools-all { font: 500 14px var(--font-data); white-space: nowrap; }
 
 .contact h2 { font-size: clamp(26px, 3.4vw, 34px); font-weight: 400; }
 .contact p { margin: 10px 0 20px; color: var(--muted); max-width: 56ch; }
@@ -77,7 +64,6 @@ figure { margin: 0; }
 
 @media (max-width: 860px) {
   .hero { grid-template-columns: minmax(0, 1fr); padding-block: 36px 32px; gap: 32px; }
-  .tools { --gap: 20px; grid-auto-columns: 82%; }
 }
 @media (max-width: 760px) {
   .caps, .rec { grid-template-columns: minmax(0, 1fr); }
@@ -173,19 +159,15 @@ figure { margin: 0; }
   </div>
 </section>
 
-<section class="sec">
+<section class="sec" id="tools">
   <div class="label">Data tools</div>
   <div>
     <div class="tools-head">
       <p class="tools-intro">{{ site.data_tools.intro }}</p>
-      <div class="tools-nav" hidden>
-        <span class="pos" aria-live="polite"></span>
-        <button type="button" class="prev" aria-label="Previous tools">&larr;</button>
-        <button type="button" class="next" aria-label="More tools">&rarr;</button>
-      </div>
+      <a class="tools-all" href="tools.html">All {{ site.data_tools["items"] | length }} tools by category &rarr;</a>
     </div>
-    <ul class="tools" tabindex="0" aria-label="Data tools, scroll for more">
-      {% for t in site.data_tools["items"] %}
+    <ul class="tools">
+      {% for t in featured_tools %}
       <li class="tool">
         <h3>{{ t.name }}</h3>
         <p>{{ t.body }}</p>
@@ -193,30 +175,6 @@ figure { margin: 0; }
       </li>
       {% endfor %}
     </ul>
-    <script>
-    (function () {
-      var track = document.querySelector(".tools"), nav = document.querySelector(".tools-nav");
-      var prev = nav.querySelector(".prev"), next = nav.querySelector(".next"), pos = nav.querySelector(".pos");
-      var cards = track.children, n = cards.length;
-      var smooth = matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
-      function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth; }
-      function update() {
-        var max = track.scrollWidth - track.clientWidth;
-        nav.hidden = max < 2;
-        if (nav.hidden) return;
-        var first = Math.round(track.scrollLeft / step()), shown = Math.max(1, Math.round((track.clientWidth + 1) / step()));
-        prev.disabled = track.scrollLeft < 2;
-        next.disabled = track.scrollLeft > max - 2;
-        var last = Math.min(n, first + shown);
-        pos.textContent = (first + 1 === last ? last : (first + 1) + "–" + last) + " of " + n;
-      }
-      prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: smooth }); });
-      next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: smooth }); });
-      track.addEventListener("scroll", function () { requestAnimationFrame(update); }, { passive: true });
-      addEventListener("resize", update);
-      update();
-    })();
-    </script>
   </div>
 </section>
 

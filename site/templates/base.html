@@ -73,6 +73,15 @@ h3 { font-size: 21px; line-height: 1.25; }
 .lede { max-width: 62ch; color: var(--muted); }
 .mono { font-family: var(--font-data); font-size: 12.5px; letter-spacing: .02em; color: var(--muted); }
 
+/* data tool cards (About featured row and tools page) */
+.tools { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 28px; }
+.tool { border-top: 2px solid var(--ink); padding-top: 14px; display: flex; flex-direction: column; }
+.tool h3 { font-size: 19px; }
+.tool p { margin: 8px 0 10px; font-size: 15px; color: var(--muted); flex: 1; }
+.tool .links { display: flex; gap: 16px; font: 500 13px var(--font-data); }
+@media (max-width: 860px) { .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .tools { grid-template-columns: minmax(0, 1fr); } }
+
 /* footer */
 .foot { border-top: 1px solid var(--rule); }
 .foot .wrap { display: flex; flex-wrap: wrap; gap: 6px 24px; padding-block: 22px 36px; font-size: 13px; color: var(--muted); }
@@ -94,11 +103,12 @@ h3 { font-size: 21px; line-height: 1.25; }
 <script type="application/ld+json">{{ person_ld | safe }}</script>
 </head>
 <body>
-<header class="top"><div class="wrap">
+<header class="top" id="top"><div class="wrap">
   <a class="brand" href="index.html">{{ career.short_name }}</a>
   <nav class="nav" aria-label="Site">
     <a href="index.html"{% if page == "index" %} aria-current="page"{% endif %}>About</a>
     <a href="cv.html"{% if page == "cv" %} aria-current="page"{% endif %}>CV</a>
+    <a href="tools.html"{% if page == "tools" %} aria-current="page"{% endif %}>Tools</a>
     <a href="index.html#contact">Contact</a>
   </nav>
 </div></header>

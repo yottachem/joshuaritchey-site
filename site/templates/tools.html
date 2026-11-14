@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block css %}
+.tools-page-head { padding-block: 48px 28px; display: grid; gap: 12px; }
+.tools-page-head h1 { font: 400 clamp(32px, 4.4vw, 44px)/1.1 var(--font-display); letter-spacing: -.01em; }
+.tools-page-head p { margin: 0; max-width: 62ch; color: var(--muted); font-size: 17px; }
+.jump { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.jump a { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 12px; border: 1px solid var(--rule); border-radius: 3px;
+          color: var(--ink); text-decoration: none; font: 500 13px/1 var(--font-data); }
+.jump a:hover { border-color: var(--muted); }
+.jump .c { color: var(--muted); font-weight: 400; font-variant-numeric: tabular-nums; }
+.grp { scroll-margin-top: 16px; }
+.top-link { margin: 28px 0 0; font: 500 13px var(--font-data); }
+{% endblock %}
+{% block main %}
+<header class="tools-page-head">
+  <h1>Data tools</h1>
+  <p>{{ site.data_tools.intro }}</p>
+  <nav aria-label="Tool categories">
+    <ul class="jump">
+      {% for g in tool_groups %}
+      <li><a href="#{{ g.id }}">{{ g.name }} <span class="c">{{ g["items"] | length }}</span></a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
+
+{% for g in tool_groups %}
+<section class="sec grp" id="{{ g.id }}">
+  <div class="label">{{ g.name }}<span>{{ g["items"] | length }} {{ "tool" if g["items"] | length == 1 else "tools" }}</span></div>
+  <div>
+    <ul class="tools">
+      {% for t in g["items"] %}
+      <li class="tool">
+        <h3>{{ t.name }}</h3>
+        <p>{{ t.body }}</p>
+        <div class="links">{% if t.site %}<a href="{{ t.site }}">Site</a>{% endif %}<a href="{{ t.code }}">Code</a></div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% if loop.last %}<p class="top-link"><a href="#top">Back to top</a></p>{% endif %}
+  </div>
+</section>
+{% endfor %}
+{% endblock %}
