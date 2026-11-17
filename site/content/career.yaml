@@ -9,12 +9,13 @@ location: Greater Boston
 linkedin: https://www.linkedin.com/in/joshua-ritchey
 
 summary: >-
-  R&D and product development leader with 15+ years building and commercializing analytical,
-  assay, and instrumentation platforms in life sciences and diagnostics. Unifies optics,
-  spectroscopy, nanofabrication, electronics, software, and chemistry into a single technical
-  system, then carries it through funding, regulated manufacturing (ISO-9001, 21 CFR Part 11),
-  and launch. Grounded in materials chemistry, with a hands-on, experimental approach to technical
-  leadership and a record of developing direct reports into leadership roles.
+  R&D and product development executive with 15+ years building and commercializing analytical,
+  assay, and instrumentation platforms in life sciences and diagnostics. Builds and leads
+  cross-functional teams, owns technical strategy with boards and investors, and carries products
+  from concept through funding, manufacturing, and early customers. Grounded in materials chemistry,
+  with range across optics, spectroscopy, electronics, and software that speeds technical decisions
+  and surfaces risk early. Consistent record of developing direct reports into leadership roles;
+  writes working Python and uses AI tools to help small teams move faster.
 
 roles:
   - company: Nonlinear CDR
@@ -33,10 +34,9 @@ roles:
     titles:
       - {title: "Vice President, Product Development", start: 2025, end: 2025}
     highlights:
-      - Led product development for Atlas, recognized with a 2025 R&D 100 Award (Analytical Test).
+      - Led product development for Atlas, recognized with a 2025 R&D 100 Award (Analytical Test), and restored its reliability and field performance.
       - Led a cross-functional mechanical, electrical, and software team; introduced rapid prototyping, parallel workstreams, and CI/CD that cut software patch cycles from months to days.
-      - Brought Atlas manufacturing, documentation, and supply chain in-house as the foundation for the next-generation platform.
-      - Established the company's ISO-9001-aligned quality system, with 21 CFR Part 11 controls verified by third-party audit.
+      - Brought Atlas manufacturing, documentation, and supply chain in-house, lowering production cost and setting the foundation for the next-generation platform.
 
   - company: NanoMosaic
     context: Photonics-based protein quantitation and multi-omic assays for cell and gene therapy
@@ -46,9 +46,9 @@ roles:
       - {title: "Vice President, Product Development", start: 2019, end: 2022}
     highlights:
       - Founding leadership team member; grew the technical organization from 2 to 25 staff and contributed to the $40MM Series A.
-      - Led Tessie, a protein quantitation instrument with machine vision, onboard analysis, and consumable, from concept to beta in 18 months; personally rebuilt its first image analysis in Python and OpenCV, cutting analysis time per run from hours to minutes, and coded its customer data report.
+      - Led board, investor, and partner communication on technical strategy, roadmap, and IP diligence, including technical diligence for financing and M&A discussions.
+      - Took Tessie, a protein quantitation instrument with machine vision, onboard analysis, and consumable, from concept to beta in 18 months; led the early-access program that converted a beta partner into a paid customer, and built a revenue-generating assay services program from zero.
       - Led instrument, consumable, and assay development for empty, partial, and full AAV capsid characterization, which earned FDA CBER Advanced Manufacturing Technology designation.
-      - Led board and partner communication on technical strategy, roadmap, and IP diligence; served as technical lead for early-access customer programs.
 
   - company: Exosome Diagnostics
     context: Exosome quantitation with nanopore arrays and LSPR spectroscopy
@@ -65,10 +65,10 @@ roles:
     titles:
       - {title: Senior Scientist to Staff Scientist, start: 2013, end: 2017}
     highlights:
-      - Developed microfluidic antifouling surface treatments, resulting in three patents.
+      - Managed and developed two scientists.
       - Led the dye synthesis program for eight individual FRET tandem dye products, and the spectroscopic normalization that resolved 4,096 droplet populations from five dyes.
       - Led surfactant system development for three individual products.
-      - Managed two scientists, both since promoted to group leaders.
+      - Developed microfluidic antifouling surface treatments, resulting in three patents.
 
   - company: E Ink Corporation
     context: Electrophoretic display technology
