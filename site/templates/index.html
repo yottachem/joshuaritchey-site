@@ -58,6 +58,8 @@ figure { margin: 0; }
 .tools-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 24px; margin-bottom: 22px; }
 .tools-intro { margin: 0; color: var(--muted); max-width: 62ch; }
 .tools-all { font: 500 14px var(--font-data); white-space: nowrap; }
+.tl { color: inherit; text-decoration: none; }
+.tl:hover { text-decoration: underline; text-decoration-color: var(--beam); }
 
 .contact h2 { font-size: clamp(26px, 3.4vw, 34px); font-weight: 400; }
 .contact p { margin: 10px 0 20px; color: var(--muted); max-width: 56ch; }
@@ -154,6 +156,25 @@ figure { margin: 0; }
     <ul class="rec">
       {% for r in career.recognition["items"] %}
       <li><span class="y">{{ r.year or "" }}</span><span><span class="i">{{ r.product }}{% if r.org %}<span class="o">, {{ r.org }}</span>{% endif %}</span><span class="d">{{ r.award }}</span></span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="ai">
+  <div class="label">AI at work</div>
+  <div>
+    <div class="tools-head">
+      <p class="tools-intro">{{ site.ai_at_work.intro }}</p>
+      <a class="tools-all" href="ai.html">{{ site.ai_at_work.all }} &rarr;</a>
+    </div>
+    <ul class="tools">
+      {% for p in site.ai_at_work.pages %}
+      <li class="tool">
+        <h3><a class="tl" href="{{ p.href }}">{{ p.name }}</a></h3>
+        <p>{{ p.body }}</p>
+        <div class="links"><a href="{{ p.href }}">Read</a></div>
+      </li>
       {% endfor %}
     </ul>
   </div>

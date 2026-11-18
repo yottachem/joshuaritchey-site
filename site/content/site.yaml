@@ -87,6 +87,25 @@ data_tools:
       site: https://yottachem.github.io/grid-impact/
       code: https://github.com/yottachem/grid-impact
 
+ai_at_work:
+  # About page section linking the AI at work pages. Same layout as Data tools.
+  intro: >-
+    AI can now draft much of what fills a leader's week: meeting records, risk updates, and status. These
+    pages show where I draw the line, so a team moves faster and every call that commits people, money,
+    or a customer still has a person behind it.
+  all: How I use AI
+  pages:
+    - name: AI at work
+      href: ai.html
+      body: >-
+        Rules decide, AI drafts, a person approves. The three lanes, the guardrails I hold AI to, and one
+        product change followed from a customer call to the leadership brief.
+    - name: Operating Cadence
+      href: cadence.html
+      body: >-
+        Seven leadership workflows for a small product team, from requirements to the quarterly portfolio,
+        with an example weekly brief and who does what in each.
+
 contact:
   heading: Contact
   body: I welcome conversations about R&D and product leadership, advisory work, and technical collaboration in instruments, diagnostics, and advanced materials.
