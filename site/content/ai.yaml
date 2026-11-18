@@ -1,0 +1,123 @@
+# Copy for ai.html: how Josh puts AI to work in an R&D organization.
+# The worked example condenses the Operating Cadence thread (fictional Quillfield Diagnostics);
+# its numbers match the demo records (src/cadence/content/thread.yaml in ~/code/operating-cadence).
+# Copy may use **bold** for emphasis and [[amber]]-style status chips (STATUS in build.py).
+
+title: Rules decide. AI drafts. A person approves.
+lede: >-
+  How I put AI to work in an R&D organization: the calls it gets to make, the ones it **never** makes, and
+  one product change followed from a customer call to the leadership brief.
+
+lanes:
+  intro: >-
+    Most of a leader's week repeats. Requirements change, meetings produce decisions, gates come up, risks
+    move, and someone writes the status. I assign each step to one of three lanes **before** any tool touches it.
+  items:
+    - id: rules
+      name: Rules decide
+      chip: Rules
+      scope: Anything that can be computed.
+      body: >-
+        Does the test still meet the requirement? Did a change break the link to a design? Is a gate
+        criterion short of its target? A written rule answers the same way every time, and anyone can check it.
+    - id: ai
+      name: AI drafts
+      chip: AI
+      scope: Anything that turns words into structure.
+      body: >-
+        Meeting notes become proposed decisions, actions, and risk updates. The week's records become a
+        first-draft brief. The draft lands in a review file and changes **nothing** on its own.
+    - id: person
+      name: A person approves
+      chip: Person
+      scope: Anything that commits people, money, or a customer.
+      body: >-
+        A person accepts a risk, makes the gate call, and sends anything that leaves the team. The record
+        keeps who decided and why.
+
+example:
+  title: One change, from a customer call to the brief
+  note: >-
+    Fictional company, real method. Quillfield Diagnostics and its data are invented for illustration.
+  steps:
+    - lane: person
+      date: 2 Mar
+      title: A lab says 40 minutes is too slow
+      body: >-
+        An early-access site's decision point moved earlier, so a 40-minute result misses it. The input is
+        logged against the customer need it touches.
+    - lane: person
+      date: 3 Mar
+      title: The requirement changes
+      body: >-
+        The head of product tightens time to result from 40 to 30 minutes, and the CEO approves. The
+        decision record keeps the reason.
+    - lane: rules
+      date: 3 Mar
+      title: The rules flag what the change breaks
+      body: >-
+        The thermal design was signed off against the 40-minute target, so the rules flag it for [[re-check]]
+        at 30. The bench test still meets the 45-minute floor but misses the new target.
+    - lane: rules
+      date: 3 Mar
+      title: A gate gap becomes a risk
+      body: >-
+        Thermal control scores 5 against a target of 7, which holds the analyzer one level short of its
+        next gate. The gap crosses the risk threshold, and the thermal risk climbs to [[high]] at 16, one
+        point below [[critical]].
+    - lane: ai
+      date: 3 Mar
+      title: The design review becomes records
+      body: >-
+        From the meeting notes, AI proposes moving the design freeze two weeks, a critical action to pick a
+        thermal design by 19 March, the risk rescore, and a note to the early-access sites. The head of
+        product reviews the proposal **before** anything is written. The note goes out **only** when a person
+        sends it.
+    - lane: rules
+      date: 5 Mar
+      title: The brief says what it means
+      body: >-
+        The weekly brief rates the analyzer [[amber]], with two reasons: the thermal risk is high, and thermal
+        control is short for the next gate. Each reason opens to its owner and due date.
+  close: >-
+    One sentence from a customer reached the leadership brief within the week. Every consequence was
+    visible, and a person made **each** call that mattered.
+
+guardrails:
+  title: The rules I hold AI to
+  items:
+    - lead: AI writes proposals, never records.
+      body: Every change passes through a review file that a person accepts.
+    - lead: Nothing leaves the team until a person sends it.
+      body: AI drafts the customer note. A person reads it and sends it.
+    - lead: Decisions are append-only.
+      body: A reversed decision gets a new record that says why. The old one stays.
+    - lead: Every number traces to its source.
+      body: An [[amber]] rating links to the risk, the score, and the test behind it.
+    - lead: Criteria are set before the result.
+      body: An experiment's success criterion is locked **before** it starts, so nobody can move the goalposts.
+
+payoff:
+  title: What a leadership team gets
+  items:
+    - Review time goes to the calls only people can make.
+    - Status comes from the records, so the weekly meeting starts at the decisions.
+    - The reasons outlast turnover, because the decision log says what changed and why.
+    - New people learn how the team decides by reading the rules.
+
+practice:
+  title: I work this way myself
+  body: >-
+    I run my own work through an AI assistant set up on the same split. It drafts my email and calendar
+    changes, and nothing reaches another person until I say **send**. Decisions go into an append-only log
+    with the reasoning. The data tools on this site were built the same way, with Python and AI coding
+    tools, and with the rules and sources written down first.
+
+kit:
+  title: Seven workflows, one split
+  body: >-
+    Operating Cadence packages the method as seven workflows for a small product team, from requirements
+    to the quarterly portfolio, each with the same three lanes. The fictional company above is its worked
+    example.
+
+cta: If your team is working out where AI belongs in R&D, I'd like to compare notes.

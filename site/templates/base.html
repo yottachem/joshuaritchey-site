@@ -32,17 +32,20 @@
   --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --font-data: "JetBrains Mono", ui-monospace, Menlo, monospace;
   --rail: 168px;
+  --good: #067647; --good-bg: #dcfae6; --warn: #93370d; --warn-bg: #fef0c7; --bad: #b42318; --bad-bg: #fee4e2;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper: #0f1214; --surface: #161a1d; --ink: #e6e9e8; --muted: #9ba3a6; --rule: #2a3034;
     --accent: #f2b25a; --beam: #f0a33a; --accent-soft: rgba(240, 163, 58, .16); color-scheme: dark;
+    --good: #47cd89; --good-bg: rgba(71, 205, 137, .14); --warn: #fdb022; --warn-bg: rgba(253, 176, 34, .14); --bad: #f97066; --bad-bg: rgba(249, 112, 102, .14);
   }
 }
 :root[data-theme="dark"] {
   --paper: #0f1214; --surface: #161a1d; --ink: #e6e9e8; --muted: #9ba3a6; --rule: #2a3034;
   --accent: #f2b25a; --beam: #f0a33a; --accent-soft: rgba(240, 163, 58, .16); color-scheme: dark;
+    --good: #47cd89; --good-bg: rgba(71, 205, 137, .14); --warn: #fdb022; --warn-bg: rgba(253, 176, 34, .14); --bad: #f97066; --bad-bg: rgba(249, 112, 102, .14);
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -82,6 +85,19 @@ h3 { font-size: 21px; line-height: 1.25; }
 @media (max-width: 860px) { .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .tools { grid-template-columns: minmax(0, 1fr); } }
 
+/* status chips ([[amber]] in copy) and lane marks (rules, AI, person), shared by the AI and Cadence pages */
+.st { display: inline-flex; align-items: center; gap: 5px; padding: 0 7px; border-radius: 999px; font: 600 .82em/1.55 var(--font-body); white-space: nowrap; vertical-align: baseline; }
+.st::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.st.good { color: var(--good); background: var(--good-bg); }
+.st.warn { color: var(--warn); background: var(--warn-bg); }
+.st.bad { color: var(--bad); background: var(--bad-bg); }
+strong { font-weight: 600; }
+.mk { display: inline-block; width: 10px; height: 10px; flex: none; }
+.mk.rules { background: var(--ink); }
+.mk.ai { background: var(--beam); border-radius: 50%; }
+.mk.person { border: 2px solid var(--ink); transform: rotate(45deg) scale(.85); }
+.chip { display: inline-flex; align-items: center; gap: 8px; font: 500 11.5px/1 var(--font-data); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
 /* footer */
 .foot { border-top: 1px solid var(--rule); }
 .foot .wrap { display: flex; flex-wrap: wrap; gap: 6px 24px; padding-block: 22px 36px; font-size: 13px; color: var(--muted); }
@@ -109,6 +125,7 @@ h3 { font-size: 21px; line-height: 1.25; }
     <a href="index.html"{% if page == "index" %} aria-current="page"{% endif %}>About</a>
     <a href="cv.html"{% if page == "cv" %} aria-current="page"{% endif %}>CV</a>
     <a href="tools.html"{% if page == "tools" %} aria-current="page"{% endif %}>Tools</a>
+    <a href="ai.html"{% if page in ("ai", "cadence") %} aria-current="page"{% endif %}>AI at work</a>
     <a href="index.html#contact">Contact</a>
   </nav>
 </div></header>

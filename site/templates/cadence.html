@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block css %}
+.cd-head { padding-block: 52px 30px; display: grid; gap: 14px; }
+.cd-head .kick { font: 500 11px/1.4 var(--font-data); letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+.cd-head .kick a { color: inherit; text-decoration: none; }
+.cd-head h1 { font: 400 clamp(30px, 4.4vw, 46px)/1.12 var(--font-display); letter-spacing: -.012em; max-width: 24ch; }
+.cd-head p { margin: 0; max-width: 62ch; color: var(--muted); font-size: 17px; }
+.cd-head .fict { font: 400 12.5px/1.5 var(--font-data); }
+
+
+.rgroups { display: grid; grid-template-columns: 4fr 3fr; gap: 20px; }
+.rg { margin: 0 0 8px; font: 500 11px/1.4 var(--font-data); letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+.rhythm { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); border-top: 2px solid var(--ink); }
+.rhythm li { border-right: 1px solid var(--rule); }
+.rhythm li:last-child { border-right: 0; }
+.rhythm a { display: grid; gap: 8px; align-content: start; padding: 12px 10px 14px; text-decoration: none; color: var(--ink); height: 100%; }
+.rhythm a:hover { background: var(--accent-soft); }
+.rhythm .w { font: 500 11px/1.3 var(--font-data); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.rhythm .n { font-weight: 500; font-size: 15px; line-height: 1.25; }
+
+.doc { margin-top: 20px; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; }
+.doc-h { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 12px 18px; border-bottom: 1px solid var(--rule); font: 500 12px/1.4 var(--font-data); color: var(--muted); }
+.doc-h .tally { display: flex; gap: 8px; }
+.prog { list-style: none; margin: 0; padding: 0; }
+.prog li { display: grid; grid-template-columns: 74px minmax(0, 13em) minmax(0, 1fr); gap: 4px 18px; padding: 12px 18px; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.prog li:last-child { border-bottom: 0; }
+.prog > .st { justify-self: start; }
+.prog .pn { font-weight: 500; }
+.prog .why { color: var(--muted); font-size: 15px; }
+.after { margin: 16px 0 0; max-width: 62ch; }
+
+.wfs { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 14px; }
+.wf { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 16px 18px 14px; scroll-margin-top: 16px; }
+.wf-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.wf-h h3 { font-size: 21px; }
+.wf-h .when { margin-left: auto; font: 500 11.5px/1 var(--font-data); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.wf .q { margin: 6px 0 12px; font: 400 17px/1.4 var(--font-display); }
+.who3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 20px; }
+.who3 > div { border-top: 1px solid var(--rule); padding-top: 8px; font-size: 14.5px; }
+.who3 > div.person { border-top: 2px solid var(--ink); }
+.who3 p { margin: 6px 0 0; color: var(--muted); }
+.who3 .person p { color: var(--ink); }
+.wf-f { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px 20px; margin: 12px 0 0; font-size: 13.5px; color: var(--muted); }
+.wf-f b { font: 500 11px/1 var(--font-data); letter-spacing: .07em; text-transform: uppercase; color: var(--ink); margin-right: 6px; }
+
+.chain { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; counter-reset: c; }
+.chain li { counter-increment: c; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; padding: 12px 14px; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); font-size: 15px; line-height: 1.45; }
+.chain li::before { content: counter(c); grid-row: span 2; font: 500 12px/1.9 var(--font-data); color: var(--accent); }
+.chain .wl { font: 500 11px/1 var(--font-data); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.links { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 16px; font: 500 14px var(--font-data); }
+
+.rules-list { list-style: none; margin: 18px 0 0; padding: 0; counter-reset: g; }
+.rules-list li { counter-increment: g; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; padding-block: 12px; border-bottom: 1px solid var(--rule); }
+.rules-list li:first-child { padding-top: 0; }
+.rules-list li::before { content: counter(g, decimal-leading-zero); font: 500 13px/1.6 var(--font-data); color: var(--accent); }
+.rules-list b { font-weight: 500; }
+.rules-list span { color: var(--muted); }
+.body { margin: 14px 0 0; max-width: 64ch; }
+.cta-line { margin: 0; font: 400 21px/1.4 var(--font-display); max-width: 44ch; }
+.cta-line a { white-space: nowrap; }
+
+@media (max-width: 960px) {
+  .rgroups { grid-template-columns: minmax(0, 1fr); }
+  .chain { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .who3, .wf-f { grid-template-columns: minmax(0, 1fr); }
+  .prog li { grid-template-columns: 74px minmax(0, 1fr); }
+  .prog .why { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .rhythm { grid-template-columns: minmax(0, 1fr); }
+  .rhythm li { border-right: 0; border-top: 1px solid var(--rule); }
+  .rhythm li:first-child { border-top: 0; }
+  .rhythm a { grid-template-columns: 9.5em minmax(0, 1fr); align-items: baseline; padding: 10px 4px; }
+  .chain { grid-template-columns: minmax(0, 1fr); }
+  .wf-h .when { margin-left: 0; width: 100%; }
+}
+{% endblock %}
+{% block main %}{% set by = {} %}{% for w in cd.workflows["items"] %}{% set _ = by.update({w.num: w}) %}{% endfor %}
+<header class="cd-head">
+  <span class="kick"><a href="ai.html">AI at work</a> / {{ cd.title }}</span>
+  <h1>{{ cd.headline }}</h1>
+  <p>{{ cd.lede | rich }}</p>
+  <p class="fict">{{ cd.note }}</p>
+</header>
+
+<section class="sec" id="rhythm">
+  <div class="label">The rhythm<span>Seven workflows</span></div>
+  <div>
+    <div class="rgroups">
+      {% for g in cd.rhythm %}
+      <div class="rgroup" style="--n: {{ g["items"] | length }}">
+        <p class="rg">{{ g.group }}</p>
+        <ul class="rhythm">
+          {% for r in g["items"] %}{% set w = by[r.num] %}
+          <li><a href="#w{{ w.num }}"><span class="w">{{ r.when }}</span><span class="n">{{ w.name }}</span></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="brief">
+  <div class="label">Weekly brief<span>Example</span></div>
+  <div>
+    <h2>{{ cd.brief.title }}</h2>
+    <p class="body">{{ cd.brief.intro | rich }}</p>
+    {% set n = {"red": 0, "amber": 0, "green": 0} %}{% for p in cd.brief.programs %}{% set _ = n.update({p.status: n[p.status] + 1}) %}{% endfor %}
+    <div class="doc">
+      <div class="doc-h"><span>{{ cd.brief.week }}</span><span class="tally">{{ ("[[Red]] " ~ n.red ~ " [[Amber]] " ~ n.amber ~ " [[Green]] " ~ n.green) | rich }}</span></div>
+      <ul class="prog">
+        {% for p in cd.brief.programs %}
+        <li>{{ ("[[" ~ p.status|capitalize ~ "]]") | rich }}<span class="pn">{{ p.name }}</span><span class="why">{{ p.reason | rich }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <p class="after">{{ cd.brief.close | rich }}</p>
+  </div>
+</section>
+
+<section class="sec" id="workflows">
+  <div class="label">Who does what<span>Rules · AI · Person</span></div>
+  <div>
+    <h2>{{ cd.workflows.title }}</h2>
+    <p class="body">{{ cd.workflows.intro | rich }}</p>
+    <ol class="wfs">
+      {% for g in cd.rhythm %}{% for r in g["items"] %}{% set w = by[r.num] %}
+      <li class="wf" id="w{{ w.num }}">
+        <div class="wf-h"><h3>{{ w.name }}</h3><span class="when">{{ r.when }}</span></div>
+        <p class="q">{{ w.question }}</p>
+        <div class="who3">
+          <div><span class="chip"><i class="mk rules" aria-hidden="true"></i>Rules</span><p>{{ w.rules | rich }}</p></div>
+          <div><span class="chip"><i class="mk ai" aria-hidden="true"></i>AI</span><p>{{ w.ai | rich }}</p></div>
+          <div class="person"><span class="chip"><i class="mk person" aria-hidden="true"></i>Person</span><p>{{ w.person | rich }}</p></div>
+        </div>
+        <div class="wf-f"><span><b>Builds on</b>{{ w.builds }}</span><span><b>Replaces</b>{{ w.replaces }}</span></div>
+      </li>
+      {% endfor %}{% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="connect">
+  <div class="label">One record set<span>Six steps</span></div>
+  <div>
+    <h2>{{ cd.connect.title }}</h2>
+    <p class="body">{{ cd.connect.intro | rich }}</p>
+    <ol class="chain">
+      {% for c in cd.connect.chain %}
+      <li><span class="wl">{{ by[c.num].name }}</span><span>{{ c.text | rich }}</span></li>
+      {% endfor %}
+    </ol>
+    <div class="links"><a href="ai.html#example">{{ cd.connect.more }}</a></div>
+  </div>
+</section>
+
+<section class="sec" id="trust">
+  <div class="label">Design</div>
+  <div>
+    <h2>{{ cd.trust.title }}</h2>
+    <ol class="rules-list">
+      {% for g in cd.trust["items"] %}<li><div><b>{{ g.lead | rich }}</b> <span>{{ g.body | rich }}</span></div></li>{% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="label">Contact</div>
+  <div><p class="cta-line">{{ cd.cta | rich }} <a href="index.html#contact">Get in touch</a></p></div>
+</section>
+{% endblock %}

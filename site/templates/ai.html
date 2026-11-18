@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block css %}
+.ai-head { padding-block: 52px 36px; display: grid; gap: 16px; }
+.ai-head .kick { font: 500 11px/1.4 var(--font-data); letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+.ai-head h1 { font: 400 clamp(30px, 4.4vw, 46px)/1.12 var(--font-display); letter-spacing: -.012em; max-width: 22ch; }
+.ai-head p { margin: 0; max-width: 60ch; color: var(--muted); font-size: 17px; }
+
+
+.lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 22px; }
+.lane { border-top: 2px solid var(--ink); padding-top: 14px; }
+.lane.ai { border-top-color: var(--beam); }
+.lane h3 { display: flex; align-items: center; gap: 10px; }
+.lane .scope { margin: 8px 0 6px; font-weight: 500; }
+.lane p { margin: 0; font-size: 15px; color: var(--muted); }
+
+.steps { list-style: none; margin: 18px 0 0; padding: 0; position: relative; }
+.steps::before { content: ""; position: absolute; left: 111px; top: 6px; bottom: 6px; width: 1px; background: var(--rule); }
+.steps li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 0 32px; padding-block: 12px; position: relative; }
+.steps li::before { content: ""; position: absolute; left: 107px; top: 19px; width: 9px; height: 9px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--muted); }
+.steps li.ai::before { background: var(--beam); border-color: var(--beam); }
+.steps .d { font: 500 12.5px/1.4 var(--font-data); color: var(--muted); padding-top: 3px; text-align: right; }
+.steps h3 { font-size: 19px; margin: 6px 0 4px; }
+.steps p { margin: 0; font-size: 15px; color: var(--muted); max-width: 64ch; }
+.steps li.ai p { color: var(--ink); }
+.note { margin: 6px 0 0; font: 400 12.5px/1.5 var(--font-data); color: var(--muted); }
+.close { margin: 22px 0 0; padding-left: 14px; border-left: 2px solid var(--beam); max-width: 62ch; font: 400 19px/1.45 var(--font-display); }
+
+.rules-list { list-style: none; margin: 18px 0 0; padding: 0; counter-reset: g; }
+.rules-list li { counter-increment: g; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; padding-block: 12px; border-bottom: 1px solid var(--rule); }
+.rules-list li:first-child { padding-top: 0; }
+.rules-list li::before { content: counter(g, decimal-leading-zero); font: 500 13px/1.6 var(--font-data); color: var(--accent); }
+.rules-list b { font-weight: 500; }
+.rules-list span { color: var(--muted); }
+
+.gets { margin: 16px 0 0; padding-left: 20px; max-width: 64ch; }
+.gets li { margin: 0 0 8px; }
+.body { margin: 14px 0 0; max-width: 64ch; }
+.links { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 16px; font: 500 14px var(--font-data); }
+.cta-line { margin: 0; font: 400 21px/1.4 var(--font-display); max-width: 40ch; }
+.cta-line a { white-space: nowrap; }
+
+@media (max-width: 860px) { .lanes { grid-template-columns: minmax(0, 1fr); gap: 22px; } }
+@media (max-width: 560px) {
+  .steps::before { left: 4px; }
+  .steps li { grid-template-columns: minmax(0, 1fr); padding-left: 24px; }
+  .steps li::before { left: 0; top: 16px; }
+  .steps .d { text-align: left; padding-top: 0; }
+}
+{% endblock %}
+{% block main %}
+<header class="ai-head">
+  <span class="kick">AI in R&amp;D leadership</span>
+  <h1>{{ ai.title }}</h1>
+  <p>{{ ai.lede | rich }}</p>
+</header>
+
+<section class="sec" id="lanes">
+  <div class="label">The split<span>Three lanes</span></div>
+  <div>
+    <h2>Every recurring step goes in one lane</h2>
+    <p class="body">{{ ai.lanes.intro | rich }}</p>
+    <div class="lanes">
+      {% for l in ai.lanes["items"] %}
+      <div class="lane {{ l.id }}">
+        <h3><i class="mk {{ l.id }}" aria-hidden="true"></i>{{ l.name }}</h3>
+        <p class="scope">{{ l.scope | rich }}</p>
+        <p>{{ l.body | rich }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="example">
+  <div class="label">Worked example<span>Six steps</span></div>
+  <div>
+    <h2>{{ ai.example.title }}</h2>
+    <p class="note">{{ ai.example.note }}</p>
+    <ol class="steps">
+      {% for s in ai.example.steps %}{% set l = lane_names[s.lane] %}
+      <li class="{{ s.lane }}">
+        <span class="d">{{ s.date }}</span>
+        <div>
+          <span class="chip"><i class="mk {{ s.lane }}" aria-hidden="true"></i>{{ l }}</span>
+          <h3>{{ s.title | rich }}</h3>
+          <p>{{ s.body | rich }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+    <p class="close">{{ ai.example.close | rich }}</p>
+  </div>
+</section>
+
+<section class="sec" id="guardrails">
+  <div class="label">Guardrails<span>Five rules</span></div>
+  <div>
+    <h2>{{ ai.guardrails.title }}</h2>
+    <ol class="rules-list">
+      {% for g in ai.guardrails["items"] %}<li><div><b>{{ g.lead | rich }}</b> <span>{{ g.body | rich }}</span></div></li>{% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="payoff">
+  <div class="label">Why it matters</div>
+  <div>
+    <h2>{{ ai.payoff.title }}</h2>
+    <ul class="gets">{% for x in ai.payoff["items"] %}<li>{{ x | rich }}</li>{% endfor %}</ul>
+  </div>
+</section>
+
+<section class="sec" id="practice">
+  <div class="label">In practice</div>
+  <div>
+    <h2>{{ ai.practice.title }}</h2>
+    <p class="body">{{ ai.practice.body | rich }}</p>
+    <div class="links"><a href="tools.html">Data tools</a></div>
+  </div>
+</section>
+
+<section class="sec" id="kit">
+  <div class="label">The method</div>
+  <div>
+    <h2>{{ ai.kit.title }}</h2>
+    <p class="body">{{ ai.kit.body | rich }}</p>
+    <div class="links"><a href="cadence.html">See the seven workflows</a></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="label">Contact</div>
+  <div><p class="cta-line">{{ ai.cta | rich }} <a href="index.html#contact">Get in touch</a></p></div>
+</section>
+{% endblock %}

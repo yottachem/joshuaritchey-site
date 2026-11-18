@@ -1,18 +1,37 @@
 """Build the site into site/dist from site/content (YAML) and site/templates (Jinja).
-Pages: About (index.html), CV (cv.html), Data tools (tools.html). Usage: uv run python site/build.py"""
+Pages: About (index.html), CV (cv.html), Data tools (tools.html), AI at work (ai.html), Operating Cadence overview (cadence.html). Usage: uv run python site/build.py"""
 import html
 import json
+import re
 import shutil
 from pathlib import Path
 
 import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
+from markupsafe import Markup
 
 HERE = Path(__file__).resolve().parent
 CONTENT, TEMPLATES, STATIC, DIST = HERE / "content", HERE / "templates", HERE / "static", HERE / "dist"
 
 # Shorter company names for the track-record strip on the About page.
 SHORT = {"Bio-Rad Laboratories, Digital Biology Center": "Bio-Rad Laboratories", "E Ink Corporation": "E Ink"}
+
+
+# Status chips for page copy: [[amber]] renders as a labeled chip whose color matches the status.
+STATUS = {"red": "bad", "critical": "bad", "amber": "warn", "high": "warn", "re-check": "warn", "green": "good", "passes": "good"}
+
+
+def rich(text):
+    """Escape copy, then render **bold** and [[status]] chips. Color never carries meaning alone: the chip says the word."""
+    out = html.escape(str(text))
+    out = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", out)
+
+    def chip(m):
+        word = m.group(1).lower()
+        if word not in STATUS:
+            raise SystemExit(f"unknown status chip [[{m.group(1)}]] (use one of {', '.join(STATUS)})")
+        return f'<span class="st {STATUS[word]}">{html.escape(m.group(1))}</span>'
+    return Markup(re.sub(r"\[\[([A-Za-z-]+)\]\]", chip, out))
 
 
 def span(start, end):
@@ -24,6 +43,8 @@ def span(start, end):
 def load():
     career = yaml.safe_load((CONTENT / "career.yaml").read_text())
     site = yaml.safe_load((CONTENT / "site.yaml").read_text())
+    site["ai"] = yaml.safe_load((CONTENT / "ai.yaml").read_text())
+    site["cadence"] = yaml.safe_load((CONTENT / "cadence.yaml").read_text())
     for r in career["roles"]:
         for t in r["titles"]:
             t["years"] = span(t["start"], t["end"])
@@ -60,6 +81,7 @@ def person_ld(career, site):
 def main():
     career, site = load()
     env = Environment(loader=FileSystemLoader(TEMPLATES), undefined=StrictUndefined, autoescape=True)
+    env.filters["rich"] = rich
     hero = site["hero"]
     headline = html.escape(hero["headline"])
     if hero.get("emphasis"):
@@ -74,6 +96,12 @@ def main():
                    page_description=f'Public CV of {career["name"]}: experience, recognition, patents, publications, education.'),
         "tools": dict(page_title=f'Data tools · {career["short_name"]}', canonical="tools.html",
                       page_description=f'Data tools by {career["name"]}: market trackers, technical references, and economics, with public code and data.'),
+        "ai": dict(page_title=f'AI at work · {career["short_name"]}', canonical="ai.html",
+                   page_description=f'How {career["name"]} puts AI to work in R&D leadership: rules decide, AI drafts, a person approves.',
+                   ai=site["ai"], lane_names={l["id"]: l["chip"] for l in site["ai"]["lanes"]["items"]}),
+        "cadence": dict(page_title=f'Operating Cadence · {career["short_name"]}', canonical="cadence.html",
+                        page_description="Operating Cadence: seven leadership workflows for a small product team, where rules decide, AI drafts, and a person approves.",
+                        cd=site["cadence"]),
     }
     if DIST.exists():
         shutil.rmtree(DIST)

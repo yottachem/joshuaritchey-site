@@ -1,0 +1,139 @@
+# Copy for cadence.html: a one-page overview of Operating Cadence (the full site comes later).
+# Workflow text is condensed from src/cadence/content/workflows.yaml (committed version) and the
+# brief statuses from the fictional demo as of 2027-03-05. **bold** and [[status]] chips allowed.
+# `num` is an internal key only (anchors and lookups); the page never shows workflow numbers.
+
+title: Operating Cadence
+headline: Seven leadership workflows for a small product team.
+lede: >-
+  Each one turns the records a team already keeps into the decisions leaders need, on a fixed rhythm. In
+  every step, rules decide what can be computed, AI drafts, and a person approves.
+note: >-
+  The example company, Quillfield Diagnostics, is fictional. It makes a near-patient molecular testing
+  platform, run as five programs in one quarter.
+
+rhythm:
+  - group: On a schedule
+    items:
+      - {when: Every meeting, num: 2}
+      - {when: Weekly, num: 5}
+      - {when: Each milestone, num: 3}
+      - {when: Quarterly, num: 6}
+  - group: When something happens
+    items:
+      - {when: A requirement changes, num: 1}
+      - {when: A gap or risk appears, num: 4}
+      - {when: An experiment runs, num: 7}
+
+brief:
+  title: What a leader sees on Friday
+  intro: >-
+    The weekly brief sets every program red, amber, or green from fixed rules and lists the reasons. Each
+    reason opens to its owner, due date, and evidence. AI drafts the narrative; the program lead edits it
+    and sends it.
+  week: Week of 5 March 2027 (fictional)
+  programs:
+    - {name: Commercial launch (research use), status: red, reason: "Commercial readiness is 2 short for the launch gate, and pricing margin depends on cartridge cost, now a [[high]] risk."}
+    - {name: QF-1 analyzer, status: amber, reason: "The thermal block risk is [[high]], and thermal control is 1 short for the next gate."}
+    - {name: QF-1 cartridge, status: amber, reason: "Three [[high]] risks, including a single molder. The action to send first parts to a second molder is overdue."}
+    - {name: Analyzer and results software, status: amber, reason: "Validation with users is 1 short for launch, and must-have tests are not all passing yet."}
+    - {name: Panel 2 assay, status: amber, reason: "The technical assessment is 1 short for the second screen."}
+  close: >-
+    Nothing on this page was typed for the meeting. It comes from the week's records, so the meeting
+    starts at the decisions.
+
+workflows:
+  title: The seven workflows
+  intro: Each row shows who does what. The **person** column is where judgment stays.
+  items:
+    - num: 1
+      name: Requirements
+      when: Per product, then on change
+      question: Are we building the right thing, and can we prove it?
+      rules: Flags vague targets. When a requirement changes, flags every design and test built to the old version for [[re-check]].
+      ai: Drafts needs and requirements from interviews or an existing PRD.
+      person: Approves each requirement and its target.
+      builds: MRD and PRD, House of Quality, updated with jobs to be done and live traceability.
+      replaces: A requirements spreadsheet reconciled by hand before each design review.
+    - num: 2
+      name: Meeting to decisions
+      when: Every meeting
+      question: What did we decide, who owns what, and what changed?
+      rules: Writes every record or none, and refuses edits to a committed decision.
+      ai: Reads the notes into proposed decisions, actions, and risks, and drafts follow-ups.
+      person: Reviews the proposal **before** anything is written.
+      builds: Design review minutes and action registers, updated with decision records.
+      replaces: Minutes that recorded the discussion but not the decision.
+    - num: 3
+      name: Gate readiness
+      when: Each milestone
+      question: Is this program ready for its next gate?
+      rules: The weakest criterion sets readiness. Flags thin or stale evidence.
+      ai: Proposes a score per criterion, citing the evidence.
+      person: Sets each score and makes the go, kill, hold, or recycle call.
+      builds: Stage-Gate and technology readiness levels, updated with Agile-Stage-Gate hybrids.
+      replaces: Gate packs assembled the week before, scored from memory.
+    - num: 4
+      name: Risk register
+      when: Continuous
+      question: What could stop us, and is it getting worse?
+      rules: Proposes a risk for each readiness gap, then tiers, trends, and escalates it to [[high]] or [[critical]].
+      ai: Writes the description and a first response, and runs a pre-mortem at each gate.
+      person: Confirms, scores, and assigns each risk.
+      builds: The risk matrix and FMEA, updated with pre-mortems and cost of delay.
+      replaces: A risk log reviewed once a quarter, where nothing moved.
+    - num: 5
+      name: Weekly brief
+      when: Weekly
+      question: What changed, what is at risk, and what do I need?
+      rules: Sets each program [[red]], [[amber]], or [[green]], with the reasons.
+      ai: Drafts the narrative from the same records.
+      person: Edits the narrative and sends the brief.
+      builds: The status report, updated with flow metrics and leading indicators.
+      replaces: Status assembled from five program leads' slides every Friday afternoon.
+    - num: 6
+      name: Quarterly portfolio
+      when: Quarterly
+      question: Which bets fit next quarter's capacity, and what are we cutting?
+      rules: Ranks candidates by impact and confidence over effort, and draws the capacity line.
+      ai: Drafts the case for the cut and the cheapest test for each risky assumption.
+      person: Moves the line where judgment says so, and approves the cut.
+      builds: Portfolio scoring, updated with ICE scoring and cost of delay.
+      replaces: A planning offsite where every project survived.
+    - num: 7
+      name: Experiment log
+      when: Per experiment
+      question: What did we set out to learn, and what did it change?
+      rules: Refuses to start without a locked success criterion, or to change it afterwards.
+      ai: Turns an assumption into a hypothesis and a measurable criterion.
+      person: Locks the criterion **before** the start, then calls the result.
+      builds: Design of experiments, updated with build-measure-learn.
+      replaces: Results judged against a bar set afterwards.
+
+connect:
+  title: How they connect
+  intro: >-
+    The workflows share one set of records, so a change in one shows up in the others without anyone
+    copying it across. One customer comment, followed through:
+  chain:
+    - {num: 1, text: "A lab says 40 minutes is too slow"}
+    - {num: 2, text: "The requirement tightens to 30"}
+    - {num: 1, text: "The thermal design is flagged for [[re-check]]"}
+    - {num: 3, text: "Thermal control is 1 short for the gate"}
+    - {num: 4, text: "The thermal risk climbs to [[high]]"}
+    - {num: 5, text: "The analyzer reads [[amber]] in the brief"}
+  more: The full walk-through, step by step
+
+trust:
+  title: Built to be trusted
+  items:
+    - lead: Plain files, no platform.
+      body: Records live as text files in a version-controlled repository. Every change has an author and a date.
+    - lead: AI proposes, a person applies.
+      body: AI output lands in a proposal file. A person applies it, all or nothing.
+    - lead: One check before anything is built.
+      body: Every record, reference, and score is validated, and a committed decision cannot be edited.
+    - lead: Example data says so.
+      body: Every fictional record is labeled, on every page built from it.
+
+cta: If you run product development and want to compare notes on operating rhythm, I'd like to hear how your team does it.
