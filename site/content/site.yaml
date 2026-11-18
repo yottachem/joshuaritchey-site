@@ -24,18 +24,23 @@ hero:
 capabilities:
   - title: Building and leading R&D teams
     body: >-
-      I build lean technical organizations and develop the people in them. At NanoMosaic I was on the
-      founding leadership team and grew the technical organization from 2 to 25 staff. At Nirrin I led a
-      cross-functional mechanical, electrical, and software team and cut software patch cycles from
-      months to days. I have a consistent record of developing direct reports into leadership roles.
-    proof: 2 to 25 technical staff · founding leadership team · direct reports developed into leaders
+      I build lean technical organizations and develop the people in them. On NanoMosaic's founding
+      leadership team I grew the technical organization from 2 to 25, most of it after the Series A. I
+      hired in step with product milestones, brought software in-house as the team matured, and built a
+      layer of group leads from within. At Nirrin I led a cross-functional mechanical, electrical, and
+      software team and cut software patch cycles from months to days.
+    proof: 2 to 25 technical staff · group leads developed from within · founding leadership team
   - title: Taking products to market
     body: >-
       I own the path from concept to customer, and the board conversation along the way. At NanoMosaic
       I took Tessie, a photonic protein-quantitation instrument, from concept to beta in 18 months, ran
       its early-access customer programs, and led it to FDA CBER Advanced Manufacturing Technology
-      designation for AAV characterization. At Nirrin I led product development for Atlas, a
-      scanning-laser NIR platform for bioprocess analytics, and restored reliable field performance.
+      designation for AAV characterization. As CTO I set the next-generation sensing architecture,
+      moving sensing to a new substrate that we built and demonstrated, for rapid sampling and higher
+      multiplexing from small sample volumes. At Nirrin I led product development for Atlas, a
+      scanning-laser NIR platform for bioprocess analytics. I deferred a costly safety-certification push
+      until the design was stable and put the team on the engineering that restored reliable field
+      performance.
     proof: Tessie · Atlas, R&D 100 (2025) · $40MM Series A · board and investor communication
   - title: Deep technical foundation
     body: >-
@@ -48,7 +53,9 @@ capabilities:
     body: >-
       For startups and investors: technical diligence on tools, diagnostics, and materials
       companies; restarting a stalled instrument or consumable program; scale-up strategy;
-      materials formulation; and practical AI tooling for small R&D teams.
+      materials formulation; and practical AI tooling for small R&D teams. At Nonlinear CDR I took the
+      founder's plan to build growth tanks from the company's own bioplastic, tested it against the
+      engineering constraints, and defined the technical path to scale.
     proof: Technical Advisor, Nonlinear CDR · fractional and project engagements
 
 data_tools:

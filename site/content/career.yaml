@@ -35,6 +35,7 @@ roles:
       - {title: "Vice President, Product Development", start: 2025, end: 2025}
     highlights:
       - Led product development for Atlas, recognized with a 2025 R&D 100 Award (Analytical Test), and restored its reliability and field performance.
+      - Deferred a costly safety-certification push until the platform was ready, redirecting time and budget to the engineering that stabilized it.
       - Led a cross-functional mechanical, electrical, and software team; introduced rapid prototyping, parallel workstreams, and CI/CD that cut software patch cycles from months to days.
       - Brought Atlas manufacturing, documentation, and supply chain in-house, lowering production cost and setting the foundation for the next-generation platform.
 
@@ -45,9 +46,10 @@ roles:
       - {title: Chief Technology Officer, start: 2022, end: 2024}
       - {title: "Vice President, Product Development", start: 2019, end: 2022}
     highlights:
-      - Founding leadership team member; grew the technical organization from 2 to 25 staff and contributed to the $40MM Series A.
+      - Founding leadership team member; grew the technical organization from 2 to 25 staff, most after the Series A, building a layer of group leads from within, and contributed to the $40MM Series A.
       - Led board, investor, and partner communication on technical strategy, roadmap, and IP diligence, including technical diligence for financing and M&A discussions.
       - Took Tessie, a protein quantitation instrument with machine vision, onboard analysis, and consumable, from concept to beta in 18 months; led the early-access program that converted a beta partner into a paid customer, and built a revenue-generating assay services program from zero.
+      - Set the next-generation sensing architecture, moving sensing to a new substrate, built and demonstrated, that enabled rapid sampling and higher multiplexing from small sample volumes.
       - Led instrument, consumable, and assay development for empty, partial, and full AAV capsid characterization, which earned FDA CBER Advanced Manufacturing Technology designation.
 
   - company: Exosome Diagnostics
