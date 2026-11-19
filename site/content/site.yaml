@@ -77,6 +77,11 @@ data_tools:
       body: When to use each of 39 additive manufacturing processes, rated on a published rubric with sourced price and size bands, plus a process picker, materials explorer, cost calculator, and practitioner notes.
       site: https://yottachem.github.io/am-process-atlas/
       code: https://github.com/yottachem/am-process-atlas
+    - name: AI-Made Materials
+      group: trackers
+      body: Materials made with AI or machine learning, graded by the evidence behind each one, from peer-reviewed paper to company claim, and set beside the best existing material. Every figure linked to its source. Updated weekly.
+      site: https://yottachem.github.io/ai-materials-tracker/
+      code: https://github.com/yottachem/ai-materials-tracker
     - name: Physical AI Tracker
       group: trackers
       featured: true
