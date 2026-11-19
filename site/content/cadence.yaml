@@ -10,7 +10,7 @@ lede: >-
   every step, rules decide what can be computed, AI drafts, and a person approves.
 note: >-
   The example company, Quillfield Diagnostics, is fictional. It makes a near-patient molecular testing
-  platform, run as five programs in one quarter.
+  system, an analyzer and a single-use cartridge, run as two programs in one quarter.
 
 rhythm:
   - group: On a schedule
@@ -33,11 +33,8 @@ brief:
     and sends it.
   week: Week of 5 March 2027 (fictional)
   programs:
-    - {name: Commercial launch (research use), status: red, reason: "Commercial readiness is 2 short for the launch gate, and pricing margin depends on cartridge cost, now a [[high]] risk."}
+    - {name: QF-1 cartridge, status: red, reason: "Pricing margin depends on cartridge cost, newly [[high]] this week. Three more [[high]] risks, including a single molder, and the action to send first parts to a second molder is overdue."}
     - {name: QF-1 analyzer, status: amber, reason: "The thermal block risk is [[high]], and thermal control is 1 short for the next gate."}
-    - {name: QF-1 cartridge, status: amber, reason: "Three [[high]] risks, including a single molder. The action to send first parts to a second molder is overdue."}
-    - {name: Analyzer and results software, status: amber, reason: "Validation with users is 1 short for launch, and must-have tests are not all passing yet."}
-    - {name: Panel 2 assay, status: amber, reason: "The technical assessment is 1 short for the second screen."}
   close: >-
     Nothing on this page was typed for the meeting. It comes from the week's records, so the meeting
     starts at the decisions.
@@ -90,7 +87,7 @@ workflows:
       ai: Drafts the narrative from the same records.
       person: Edits the narrative and sends the brief.
       builds: The status report, updated with flow metrics and leading indicators.
-      replaces: Status assembled from five program leads' slides every Friday afternoon.
+      replaces: Status assembled from each program lead's slides every Friday afternoon.
     - num: 6
       name: Quarterly portfolio
       when: Quarterly
