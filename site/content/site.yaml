@@ -64,6 +64,8 @@ data_tools:
   # About page shows the featured tools (at most 3) and links to tools.html, which lists every tool by group.
   # Newest first within a group. Each item needs a group id from the list below.
   groups:
+    - id: executive
+      name: Executive tools
     - id: trackers
       name: Market trackers
     - id: references
@@ -71,6 +73,11 @@ data_tools:
     - id: economy
       name: Economics and energy
   items:
+    - name: Non-Dilutive Funding Map
+      group: executive
+      body: Federal and state grant and contract programs for deep tech companies, graded on sourced award size, published success rate, and time to cash, plus a picker that turns a company profile into an 18-month application roadmap. Updated weekly.
+      site: https://yottachem.github.io/funding-map/
+      code: https://github.com/yottachem/funding-map
     - name: AM Process Atlas
       group: references
       featured: true
