@@ -69,6 +69,7 @@ figure { margin: 0; }
   .hero { grid-template-columns: minmax(0, 1fr); padding-block: 36px 32px; gap: 32px; }
 }
 @media (max-width: 760px) {
+  .cta-ai { display: none; } /* nav already shows AI at work on phones */
   .caps, .rec { grid-template-columns: minmax(0, 1fr); }
   .track li { grid-template-columns: minmax(0, 1fr); }
 }
@@ -85,7 +86,7 @@ figure { margin: 0; }
     <div class="cta">
       <a class="primary" href="#contact">Get in touch</a>
       <a href="cv.html">Read the CV</a>
-      <a href="ai.html">AI at work</a>
+      <a class="cta-ai" href="ai.html">AI at work</a>
       <a href="{{ career.linkedin }}">LinkedIn</a>
     </div>
   </div>
@@ -167,7 +168,6 @@ figure { margin: 0; }
   <div>
     <div class="tools-head">
       <p class="tools-intro">{{ site.ai_at_work.intro }}</p>
-      <a class="tools-all" href="ai.html">{{ site.ai_at_work.all }} &rarr;</a>
     </div>
     <ul class="tools">
       {% for p in site.ai_at_work.pages %}

@@ -113,7 +113,6 @@ ai_at_work:
     AI can now draft much of what fills a leader's week: meeting records, risk updates, and status. These
     pages show where I draw the line, so a team moves faster and every call that commits people, money,
     or a customer still has a person behind it.
-  all: How I use AI
   pages:
     - name: AI at work
       href: ai.html
