@@ -16,48 +16,49 @@ analytics_token: "ecb70e49877b40a994bffaa47dbc9de8"
 hero:
   headline: I build and lead the teams that take complex technology from concept to customers.
   emphasis: concept to customers
-  sub: >-
-    R&D and product development executive with 15+ years in life sciences, diagnostics, and materials.
-    Founding leadership team member who grew a technical organization from 2 to 25 staff, backed by
-    deep expertise in chemistry, hardware, and software.
+  sub: R&D and product development executive with 15+ years in life sciences, diagnostics, and materials.
 
+# Each body's first sentence shows on About; the rest opens under "More". Every sentence must
+# support its title.
 capabilities:
-  - title: Building and leading R&D teams
+  - title: Building and leading technical organizations
     body: >-
-      I build lean technical organizations and develop the people in them. On NanoMosaic's founding
-      leadership team I grew the technical organization from 2 to 25, most of it after the Series A. I
-      hired in step with product milestones, brought software in-house as the team matured, and built a
-      layer of group leads from within. At Nirrin I led a cross-functional mechanical, electrical, and
-      software team and cut software patch cycles from months to days.
-    proof: 2 to 25 technical staff · group leads developed from within · founding leadership team
+      I build lean technical organizations, develop the people in them, and carry their strategy to the
+      board. On NanoMosaic's founding leadership team I grew the technical organization from 2 to 25, most
+      of it after the Series A. I hired in step with product milestones, brought software in-house as the
+      team matured, and built a layer of group leads from within. I led board, investor, and partner
+      communication on technical strategy and contributed to the $40MM Series A. At Nirrin I led a
+      seven-person mechanical, electrical, and software team and introduced the rapid prototyping, parallel
+      workstreams, and program structure that shortened its development cycles.
+    proof: 2 to 25 technical staff · group leads developed from within · $40MM Series A · board and investor communication
   - title: Taking products to market
     body: >-
-      I lead the teams that take products from concept to customer, and I carry the board conversation
-      along the way. At NanoMosaic I led the team that took Tessie, a photonic protein-quantitation
-      instrument, from concept to beta in 18 months, and I was the primary technical contact for its
-      early-access customers. My technical input directly shaped the AAV characterization work that
-      contributed to the platform's FDA CBER Advanced Manufacturing Technology designation. As CTO I set the next-generation sensing
-      architecture, moving sensing to a new substrate that the team built and demonstrated, for rapid
-      sampling and higher multiplexing from small sample volumes. At Nirrin I led product development for
-      Atlas, a scanning-laser NIR platform for bioprocess analytics. I deferred a costly
-      safety-certification push until the design was stable and put the team on the engineering that
-      restored reliable field performance.
-    proof: Tessie · Atlas, R&D 100 (2025) · $40MM Series A · board and investor communication
+      I lead the teams that take products from concept to paying customers. At NanoMosaic I led the team
+      that took Tessie, a photonic protein-quantitation instrument, from concept to beta in 18 months. I
+      was the primary technical contact for its early-access customers, and one beta partner became a paid
+      customer. I also built a revenue-generating assay services program from zero. At Nirrin I led
+      product development for Atlas, a scanning-laser NIR platform for bioprocess analytics. I deferred a
+      costly safety-certification push until the design was stable, put the team on the engineering that
+      restored reliable field performance, and brought manufacturing and supply chain in-house to lower
+      production cost.
+    proof: Tessie, concept to beta in 18 months · beta partner to paid customer · Atlas, R&D 100 (2025)
   - title: Deep technical foundation
     body: >-
-      My base is materials chemistry, and I work fluently across optics, electronics, software, and
-      assay biology. That depth lets me make sound technical calls quickly and spot risk early. It runs
-      from electrophoretic display materials at E Ink, to microfluidic surfaces and FRET dye systems at
-      Bio-Rad, to Ulva-based bioplastics for carbon removal today.
+      My base is materials chemistry, and I work fluently across optics, electronics, software, and assay
+      biology. That depth lets me make sound technical calls quickly and spot risk early. As CTO at
+      NanoMosaic I set the next-generation sensing architecture, moving sensing to a new substrate that the
+      team built and demonstrated, for rapid sampling and higher multiplexing from small sample volumes.
+      The range runs from electrophoretic display materials at E Ink, to microfluidic surfaces and FRET dye
+      systems at Bio-Rad, to Ulva-based bioplastics for carbon removal today.
     proof: 14 issued patents · Ph.D., Materials Chemistry, UIUC
   - title: Advisory
     body: >-
-      For startups and investors: technical diligence on tools, diagnostics, and materials
-      companies; restarting a stalled instrument or consumable program; scale-up strategy;
-      materials formulation; and practical AI tooling for small R&D teams. At Nonlinear CDR I took the
-      founder's plan to build growth tanks from the company's own bioplastic, tested it against the
-      engineering constraints, and defined the technical path to scale.
-    proof: Technical Advisor, Nonlinear CDR · fractional and project engagements
+      For startups and investors: technical diligence on tools, diagnostics, and materials companies;
+      restarting a stalled instrument or consumable program; scale-up strategy; materials formulation; and
+      practical AI tooling for small R&D teams. I have offered this work through JAR Consulting since 2019.
+      At Nonlinear CDR I took the founder's plan to build growth tanks from the company's own bioplastic,
+      tested it against the engineering constraints, and defined the technical path to scale.
+    proof: Principal, JAR Consulting · Technical Advisor, Nonlinear CDR · fractional and project engagements
 
 data_tools:
   intro: Side projects built with Python and AI coding tools. Code and data are public.

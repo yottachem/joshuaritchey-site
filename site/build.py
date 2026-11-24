@@ -4,6 +4,7 @@ import html
 import json
 import re
 import shutil
+from datetime import date
 from pathlib import Path
 
 import yaml
@@ -38,6 +39,35 @@ def span(start, end):
     if end == "present":
         return f"{start}–now"
     return str(start) if start == end else f"{start}–{end}"
+
+
+SENTENCE = re.compile(r"(?<=[a-z0-9)]\.)\s+(?=[A-Z])")
+
+
+def lead(text):
+    """First sentence of a paragraph. About shows it; the rest opens on tap."""
+    return SENTENCE.split(str(text).strip(), maxsplit=1)[0]
+
+
+def rest(text):
+    parts = SENTENCE.split(str(text).strip(), maxsplit=1)
+    return parts[1] if len(parts) > 1 else ""
+
+
+def timeline(roles):
+    """Year grid for the About career timeline: each role's titles as bar segments, end year inclusive."""
+    now = date.today().year
+    first = min(t["start"] for r in roles for t in r["titles"])
+    cols = now - first + 1
+    rows = []
+    for r in roles:
+        segs = []
+        for t in sorted(r["titles"], key=lambda t: t["start"]):
+            end = now if t["end"] == "present" else t["end"]
+            segs.append({"title": t["title"], "years": t["years"], "c0": t["start"] - first + 1, "c1": end - first + 2})
+        rows.append({"role": r, "segs": segs})
+    ticks = [{"year": y, "col": y - first + 1} for y in range(first, now + 1) if y % 5 == 0]
+    return {"cols": cols, "rows": rows, "ticks": ticks}
 
 
 def load():
@@ -82,13 +112,15 @@ def main():
     career, site = load()
     env = Environment(loader=FileSystemLoader(TEMPLATES), undefined=StrictUndefined, autoescape=True)
     env.filters["rich"] = rich
+    env.filters["lead"] = lead
+    env.filters["rest"] = rest
     hero = site["hero"]
     headline = html.escape(hero["headline"])
     if hero.get("emphasis"):
         e = html.escape(hero["emphasis"])
         headline = headline.replace(e, f"<em>{e}</em>", 1)
     featured, groups = tools(site)
-    common = dict(career=career, site=site, person_ld=person_ld(career, site), featured_tools=featured, tool_groups=groups)
+    common = dict(career=career, site=site, tl=timeline(career["roles"]), person_ld=person_ld(career, site), featured_tools=featured, tool_groups=groups)
     pages = {
         "index": dict(page_title=f'{career["short_name"]} · R&D and product development', canonical="",
                       page_description=site["description"], hero_headline=headline),

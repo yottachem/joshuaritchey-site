@@ -28,6 +28,14 @@ roles:
       - Advise the founder on technical strategy, including in-house tank fabrication as a capital-efficient path to scale.
       - Write grant proposals; the company was selected for the CleanTech Open 2026 cohort.
 
+  - company: JAR Consulting
+    context: Independent technical consulting
+    domain: Technical diligence and product development
+    titles:
+      - {title: Principal, start: 2019, end: present}
+    highlights:
+      - Technical diligence and product development for life science tools, diagnostics, and materials companies.
+
   - company: Nirrin Technologies
     context: Scanning-laser NIR spectroscopy for bioprocess analytics (PAT)
     domain: NIR spectroscopy for bioprocessing

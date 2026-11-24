@@ -38,13 +38,35 @@ figure { margin: 0; }
 .cap { border-top: 2px solid var(--ink); padding-top: 14px; }
 .cap p { margin: 10px 0 12px; }
 
-.track { list-style: none; margin: 0; padding: 0; }
-.track li { display: grid; grid-template-columns: 104px minmax(0, 1.2fr) minmax(0, 1fr); gap: 4px 20px; padding-block: 14px; border-bottom: 1px solid var(--rule); align-items: baseline; }
-.track li:first-child { padding-top: 0; }
-.yrs { font: 500 13px var(--font-data); font-variant-numeric: tabular-nums; color: var(--muted); }
-.co { font: 500 17px/1.3 var(--font-display); }
-.ro { display: block; font-size: 14px; color: var(--muted); }
-.dom { font-size: 14px; color: var(--muted); }
+/* career timeline: one row per role on a year grid; tap a row for title and focus */
+.tl { --lab: 190px; --yr: 84px; }
+.tl-row { border-bottom: 1px solid var(--rule); }
+.tl-row summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: var(--lab) minmax(0, 1fr) var(--yr); gap: 6px 18px; align-items: center; padding-block: 12px; }
+.tl-row summary::-webkit-details-marker { display: none; }
+.tl-co { font: 500 17px/1.3 var(--font-display); }
+.tl-co::before { content: "+"; display: inline-block; width: 16px; font: 500 13px var(--font-data); color: var(--muted); }
+.tl-row[open] .tl-co::before { content: "\2212"; color: var(--accent); }
+.tl-bar { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); height: 12px; position: relative; }
+.tl-bar > * { grid-row: 1; }
+.tl-grid { border-left: 1px dashed var(--rule); height: 100%; }
+.tl-seg { background: var(--muted); height: 8px; align-self: center; border-radius: 1px; margin-right: 2px; transition: background .15s; }
+.tl-row summary:hover .tl-seg, .tl-row[open] .tl-seg { background: var(--beam); }
+.tl-yrs { font: 500 13px var(--font-data); font-variant-numeric: tabular-nums; color: var(--muted); text-align: right; }
+.tl-detail { padding: 0 0 14px calc(var(--lab) + 18px); display: grid; gap: 2px; }
+.tl-detail .ro, .tl-detail .dom { font-size: 14px; color: var(--muted); }
+.tl-detail .ro { color: var(--ink); }
+.tl-ty { font: 400 12px var(--font-data); color: var(--muted); }
+.tl-axis { display: grid; grid-template-columns: var(--lab) minmax(0, 1fr) var(--yr); gap: 18px; padding-top: 8px; }
+.tl-axis .tl-bar { height: auto; }
+.tl-tick { font: 400 11px var(--font-data); color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .tl-seg { transition: none; } }
+
+.more-d { margin: -4px 0 12px; }
+.more-d summary { cursor: pointer; font: 500 12.5px var(--font-data); color: var(--accent); list-style: none; }
+.more-d summary::-webkit-details-marker { display: none; }
+.more-d summary::after { content: " +"; }
+.more-d[open] summary { display: none; }
+.more-d p { margin: 0; }
 .more { margin-top: 18px; font-size: 15px; }
 
 .rec { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 40px; }
@@ -71,7 +93,11 @@ figure { margin: 0; }
 @media (max-width: 760px) {
   .cta-ai { display: none; } /* nav already shows AI at work on phones */
   .caps, .rec { grid-template-columns: minmax(0, 1fr); }
-  .track li { grid-template-columns: minmax(0, 1fr); }
+  .tl-row summary { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; }
+  .tl-row summary .tl-bar { grid-column: 1 / -1; grid-row: 2; }
+  .tl-detail { padding-left: 16px; }
+  .tl-axis { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .tl-axis > span:not(.tl-bar) { display: none; }
 }
 {% endblock %}
 {% block main %}
@@ -128,7 +154,8 @@ figure { margin: 0; }
     {% for c in site.capabilities %}
     <div class="cap">
       <h3>{{ c.title }}</h3>
-      <p>{{ c.body }}</p>
+      <p>{{ c.body | lead }}</p>
+      {% if c.body | rest %}<details class="more-d"><summary>More</summary><p>{{ c.body | rest }}</p></details>{% endif %}
       <div class="mono">{{ c.proof }}</div>
     </div>
     {% endfor %}
@@ -138,15 +165,25 @@ figure { margin: 0; }
 <section class="sec">
   <div class="label">Track record<span>{{ career.roles | length }} roles</span></div>
   <div>
-    <ol class="track">
-      {% for r in career.roles %}
-      <li>
-        <span class="yrs">{{ r.years }}</span>
-        <span><span class="co">{{ r.company_short }}</span><span class="ro">{{ r.titles | map(attribute="title") | join("; ") }}</span></span>
-        <span class="dom">{{ r.domain }}</span>
-      </li>
+    <div class="tl" style="--cols: {{ tl.cols }}">
+      {% for row in tl.rows %}{% set r = row.role %}
+      <details class="tl-row"{% if loop.first %} open{% endif %}>
+        <summary>
+          <span class="tl-co">{{ r.company_short }}</span>
+          <span class="tl-bar" aria-hidden="true">
+            {% for t in tl.ticks %}<i class="tl-grid" style="grid-column: {{ t.col }}"></i>{% endfor %}
+            {% for sg in row.segs %}<b class="tl-seg" style="grid-column: {{ sg.c0 }} / {{ sg.c1 }}"></b>{% endfor %}
+          </span>
+          <span class="tl-yrs">{{ r.years }}</span>
+        </summary>
+        <div class="tl-detail">
+          <span class="ro">{% for sg in row.segs | reverse %}{{ sg.title }}{% if row.segs | length > 1 %} <span class="tl-ty">{{ sg.years }}</span>{% endif %}{% if not loop.last %}; {% endif %}{% endfor %}</span>
+          <span class="dom">{{ r.domain }}</span>
+        </div>
+      </details>
       {% endfor %}
-    </ol>
+      <div class="tl-axis" aria-hidden="true"><span></span><span class="tl-bar">{% for t in tl.ticks %}<span class="tl-tick" style="grid-column: {{ t.col }}">{{ t.year }}</span>{% endfor %}</span><span></span></div>
+    </div>
     <p class="more"><a href="cv.html">Full CV, patents, and publications</a></p>
   </div>
 </section>
