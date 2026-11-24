@@ -39,10 +39,47 @@
 .cta-line { margin: 0; font: 400 21px/1.4 var(--font-display); max-width: 40ch; }
 .cta-line a { white-space: nowrap; }
 
+/* worked-example stepper: three lanes x six steps; the list below shows the active step (all steps without JS) */
+.flow { display: block; width: 100%; max-width: 560px; height: auto; margin: 18px 0 6px; overflow: visible; }
+.fl-lane { stroke: var(--rule); stroke-width: 1; stroke-dasharray: 2 3; fill: none; }
+.fl-lbl { font: 500 8px var(--font-data); letter-spacing: .1em; fill: var(--muted); }
+.fl-date { font: 400 7.5px var(--font-data); letter-spacing: .06em; fill: var(--muted); }
+.fl-seg { stroke: var(--rule); stroke-width: 1.5; fill: none; transition: stroke .2s; }
+.fl-seg.done { stroke: var(--beam); }
+.sh.rules { fill: var(--ink); }
+.sh.ai { fill: var(--beam); }
+.sh.person { fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; }
+.node { cursor: pointer; outline: none; transition: opacity .2s; }
+.node.ahead { opacity: .35; }
+.node .halo { fill: var(--accent-soft); stroke: var(--beam); stroke-width: 1.2; opacity: 0; transition: opacity .2s; }
+.node.on .halo, .node:hover .halo { opacity: 1; }
+.node:focus-visible .halo { opacity: 1; stroke-dasharray: 2 2; stroke-width: 1.6; }
+.flow-ctl { display: flex; align-items: center; gap: 16px; margin: 4px 0 0; font: 500 13px var(--font-data); }
+.flow-ctl[hidden] { display: none; }
+.fl-count { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 9ch; text-align: center; }
+.fl-btn { font: inherit; color: var(--ink); background: transparent; border: 1px solid var(--rule); border-radius: 3px; padding: 7px 12px; cursor: pointer; }
+.fl-btn:hover:not(:disabled) { border-color: var(--beam); }
+.fl-btn:disabled { color: var(--muted); opacity: .5; cursor: default; }
+#example.js .steps::before, #example.js .steps li::before { display: none; }
+#example.js .steps li { display: none; }
+#example.js .steps li.on { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+#example.js .steps .d { text-align: left; padding-top: 0; }
+#example.js .steps { min-height: 10em; margin-top: 10px; }
+@media (prefers-reduced-motion: reduce) { .fl-seg, .node, .node .halo { transition: none; } }
+
+.more-d { margin: 6px 0 0; }
+.more-d summary { cursor: pointer; font: 500 12.5px var(--font-data); color: var(--accent); list-style: none; }
+.more-d summary::-webkit-details-marker { display: none; }
+.more-d summary::after { content: " +"; }
+.more-d[open] summary { display: none; }
+.more-d p { margin: 0; font-size: 15px; color: var(--muted); }
+.more-d.body p { font-size: 16px; color: var(--ink); max-width: 64ch; }
+
 @media (max-width: 860px) { .lanes { grid-template-columns: minmax(0, 1fr); gap: 22px; } }
 @media (max-width: 560px) {
   .steps::before { left: 4px; }
   .steps li { grid-template-columns: minmax(0, 1fr); padding-left: 24px; }
+  #example.js .steps li { padding-left: 0; }
   .steps li::before { left: 0; top: 16px; }
   .steps .d { text-align: left; padding-top: 0; }
 }
@@ -64,7 +101,7 @@
       <div class="lane {{ l.id }}">
         <h3><i class="mk {{ l.id }}" aria-hidden="true"></i>{{ l.name }}</h3>
         <p class="scope">{{ l.scope | rich }}</p>
-        <p>{{ l.body | rich }}</p>
+        <details class="more-d"><summary>More</summary><p>{{ l.body | rich }}</p></details>
       </div>
       {% endfor %}
     </div>
@@ -76,6 +113,36 @@
   <div>
     <h2>{{ ai.example.title }}</h2>
     <p class="note">{{ ai.example.note }}</p>
+    {% set row = {"rules": 0, "ai": 1, "person": 2} %}
+    <svg class="flow" viewBox="0 0 360 150" role="group" aria-label="The six steps across the three lanes">
+      {% for l in ai.lanes["items"] %}{% set y = 28 + loop.index0 * 42 %}
+      <path class="fl-lane" d="M70 {{ y }} H350"/>
+      <g transform="translate(10 {{ y }})" aria-hidden="true">
+        {% if l.id == "rules" %}<rect class="sh rules" x="-4" y="-4" width="8" height="8"/>
+        {% elif l.id == "ai" %}<circle class="sh ai" r="4.5"/>
+        {% else %}<rect class="sh person" x="-3.5" y="-3.5" width="7" height="7" transform="rotate(45)"/>{% endif %}
+        <text class="fl-lbl" x="10" y="3">{{ l.chip | upper }}</text>
+      </g>
+      {% endfor %}
+      {% for s in ai.example.steps %}{% set x = 84 + loop.index0 * 50 %}
+      <text class="fl-date" x="{{ x }}" y="144" text-anchor="middle">{{ s.date | upper }}</text>
+      {% if not loop.last %}{% set n = ai.example.steps[loop.index] %}
+      <path class="fl-seg" data-i="{{ loop.index }}" d="M{{ x }} {{ 28 + row[s.lane] * 42 }} L{{ x + 50 }} {{ 28 + row[n.lane] * 42 }}"/>
+      {% endif %}{% endfor %}
+      {% for s in ai.example.steps %}{% set x = 84 + loop.index0 * 50 %}{% set y = 28 + row[s.lane] * 42 %}
+      <g class="node" data-i="{{ loop.index0 }}" transform="translate({{ x }} {{ y }})" tabindex="0" role="button" aria-label="Step {{ loop.index }}, {{ s.date }}, {{ lane_names[s.lane] }}: {{ s.title }}">
+        <circle class="halo" r="12"/>
+        {% if s.lane == "rules" %}<rect class="sh rules" x="-6" y="-6" width="12" height="12"/>
+        {% elif s.lane == "ai" %}<circle class="sh ai" r="7"/>
+        {% else %}<rect class="sh person" x="-5" y="-5" width="10" height="10" transform="rotate(45)"/>{% endif %}
+      </g>
+      {% endfor %}
+    </svg>
+    <div class="flow-ctl" hidden>
+      <button type="button" class="fl-btn" data-go="-1">&larr; Previous</button>
+      <span class="fl-count" aria-live="polite">Step 1 of {{ ai.example.steps | length }}</span>
+      <button type="button" class="fl-btn" data-go="1">Next &rarr;</button>
+    </div>
     <ol class="steps">
       {% for s in ai.example.steps %}{% set l = lane_names[s.lane] %}
       <li class="{{ s.lane }}">
@@ -89,6 +156,32 @@
       {% endfor %}
     </ol>
     <p class="close">{{ ai.example.close | rich }}</p>
+    <script>
+    (function () {
+      var sec = document.getElementById("example"); if (!sec) return;
+      var items = sec.querySelectorAll(".steps li"), nodes = sec.querySelectorAll(".node"),
+          segs = sec.querySelectorAll(".fl-seg"), ctl = sec.querySelector(".flow-ctl"),
+          count = sec.querySelector(".fl-count"), btns = sec.querySelectorAll(".fl-btn"), n = items.length, cur = 0;
+      function go(i) {
+        cur = Math.max(0, Math.min(n - 1, i));
+        items.forEach(function (li, k) { li.classList.toggle("on", k === cur); });
+        nodes.forEach(function (g, k) { g.classList.toggle("on", k === cur); g.classList.toggle("ahead", k > cur); g.setAttribute("aria-pressed", k === cur); });
+        segs.forEach(function (p) { p.classList.toggle("done", +p.getAttribute("data-i") <= cur); });
+        count.textContent = "Step " + (cur + 1) + " of " + n;
+        btns[0].disabled = cur === 0; btns[1].disabled = cur === n - 1;
+      }
+      sec.classList.add("js"); ctl.hidden = false;
+      btns.forEach(function (b) { b.addEventListener("click", function () { go(cur + +b.getAttribute("data-go")); }); });
+      nodes.forEach(function (g, k) {
+        g.addEventListener("click", function () { go(k); });
+        g.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(k); }
+          else if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); go(cur + (e.key === "ArrowRight" ? 1 : -1)); nodes[cur].focus(); }
+        });
+      });
+      go(0);
+    })();
+    </script>
   </div>
 </section>
 
@@ -114,7 +207,8 @@
   <div class="label">In practice</div>
   <div>
     <h2>{{ ai.practice.title }}</h2>
-    <p class="body">{{ ai.practice.body | rich }}</p>
+    <p class="body">{{ ai.practice.body | lead | rich }}</p>
+    {% if ai.practice.body | rest %}<details class="more-d body"><summary>More</summary><p>{{ ai.practice.body | rest | rich }}</p></details>{% endif %}
     <div class="links"><a href="tools.html">Data tools</a></div>
   </div>
 </section>
@@ -123,7 +217,8 @@
   <div class="label">The method</div>
   <div>
     <h2>{{ ai.kit.title }}</h2>
-    <p class="body">{{ ai.kit.body | rich }}</p>
+    <p class="body">{{ ai.kit.body | lead | rich }}</p>
+    {% if ai.kit.body | rest %}<details class="more-d body"><summary>More</summary><p>{{ ai.kit.body | rest | rich }}</p></details>{% endif %}
     <div class="links"><a href="cadence.html">See the seven workflows</a></div>
   </div>
 </section>

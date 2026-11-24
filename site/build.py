@@ -41,7 +41,7 @@ def span(start, end):
     return str(start) if start == end else f"{start}–{end}"
 
 
-SENTENCE = re.compile(r"(?<=[a-z0-9)]\.)\s+(?=[A-Z])")
+SENTENCE = re.compile(r"(?<=[a-z0-9)*][.?])\s+(?=[A-Z])")
 
 
 def lead(text):
